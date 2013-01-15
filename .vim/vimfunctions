@@ -4,7 +4,8 @@ function LoadSourceFile()
       :perl <<EOF
 #EOF
         use strict;
-        my $vim_utils = "$ENV{MBX_ROOT}/dev_tools/vim_utils";
+        my $vim_utils = "$ENV{CODE_BASE}/lib";
+        VIM::Msg("$vim_utils");
         return unless(-e $vim_utils);
         unshift(@INC, $vim_utils);
         require VimTools;
@@ -20,7 +21,8 @@ function OpenSourceFile()
       :perl <<EOF
 #EOF
         use strict;
-        my $vim_utils = "$ENV{MBX_ROOT}/dev_tools/vim_utils";
+        my $vim_utils = "$ENV{CODE_BASE}/lib";
+        VIM::Msg("$vim_utils");
         return unless(-e $vim_utils);
         unshift(@INC, $vim_utils);
         require VimTools;
