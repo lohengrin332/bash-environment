@@ -5,7 +5,7 @@ function LoadSourceFile()
 #EOF
         use strict;
         my $vim_utils = "$ENV{CODE_BASE}/lib";
-        VIM::Msg("$vim_utils");
+        #VIM::Msg("$vim_utils");
         return unless(-e $vim_utils);
         unshift(@INC, $vim_utils);
         require VimTools;
@@ -22,7 +22,7 @@ function OpenSourceFile()
 #EOF
         use strict;
         my $vim_utils = "$ENV{CODE_BASE}/lib";
-        VIM::Msg("$vim_utils");
+        #VIM::Msg("$vim_utils");
         return unless(-e $vim_utils);
         unshift(@INC, $vim_utils);
         require VimTools;
