@@ -1,0 +1,13 @@
+# Default screens
+screen -t 'bash'            11
+screen -t 'bash'            10
+screen -t 'bash3'           9
+screen -t 'db3'             8
+screen -t 'logs3'           7
+screen -t 'code3'           6
+screen -t 'bash2'           5
+screen -t 'db2'             4
+screen -t 'logs2'           3
+screen -t 'code2'           2
+screen -t 'bash1'           1
+screen -t 'code1'           0

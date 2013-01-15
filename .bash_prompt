@@ -1,0 +1,77 @@
+#TEST=1
+
+function parse_git_dirty() {
+  G_STATUS=$(git status 2> /dev/null | tail -n1)
+  [[ "$G_STATUS" != "nothing to commit (working directory clean)" && "$G_STATUS" != '' ]] && echo "*"
+}
+
+function parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
+}
+
+
+if tput setaf 1 &> /dev/null; then
+  #echo "tput setaf 1"
+  BLACK=$(tput setaf 0)
+  RED=$(tput setaf 1)
+  GREEN=$(tput setaf 2)
+  YELLOW=$(tput setaf 3)
+  DKBLUE=$(tput setaf 4)
+  MAGENTA=$(tput setaf 5)
+  LTBLUE=$(tput setaf 6)
+  WHITE=$(tput setaf 7)
+  BLACK_HILITE=$(tput setab 0)
+  RED_HILITE=$(tput setab 1)
+  GREEN_HILITE=$(tput setab 2)
+  YELLOW_HILITE=$(tput setab 3)
+  DKBLUE_HILITE=$(tput setab 4)
+  MAGENTA_HILITE=$(tput setab 5)
+  LTBLUE_HILITE=$(tput setab 6)
+  WHITE_HILITE=$(tput setab 7)
+  BOLD=$(tput bold)
+  RESET=$(tput sgr0)
+else
+  #echo "not tput setaf 1"
+  BLACK=""
+  RED="\e[31m"
+  GREEN="\e[32m"
+  YELLOW="\e[33m"
+  DKBLUE="\e[34m"
+  MAGENTA="\e[35m"
+  LTBLUE="\e[36m"
+  WHITE="\e[37m"
+  RED_HILITE="\e[41m"
+  GREEN_HILITE="\e[42m"
+  YELLOW_HILITE="\e[43m"
+  DKBLUE_HILITE="\e[44m"
+  MAGENTA_HILITE="\e[45m"
+  LTBLUE_HILITE="\e[46m"
+  WHITE_HILITE="\e[47m"
+  BOLD=""
+  RESET="\e[0m"
+fi
+
+if [ "$TEST" == '1' ]; then
+  echo "${RED}RED${RESET}"
+  echo "${GREEN}GREEN${RESET}"
+  echo "${YELLOW}YELLOW${RESET}"
+  echo "${DKBLUE}DKBLUE${RESET}"
+  echo "${MAGENTA}MAGENTA${RESET}"
+  echo "${LTBLUE}LTBLUE${RESET}"
+  echo "${WHITE}WHITE${RESET}"
+  echo "${BOLD}BOLD${RESET}"
+  echo "${RESET}RESET${RESET}"
+
+  export PS1="\[${RED}\]RED \[${GREEN}\]GREEN \[${YELLOW}\]YELLOW \[${DKBLUE}\]DKBLUE \[${MAGENTA}\]MAGENTA \[${LTBLUE}\]LTBLUE \[${WHITE}\]WHITE \[${BLACK}\]BLACK \[${DKBLUE_HILITE}\]DKBLUE_HILITE \[${YELLOW_HILITE}\]YELLOW_HILITE \[${BOLD}\]BOLD \[${RESET}\]RESET\n$ "
+
+else
+  #export PS1="[\u@\h \W]\$ "
+  if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] ; then
+    export PS1='\[${RED}\]\u@\h\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]'
+  elif [ $HOSTNAME == 'samdev' ]; then
+    export PS1='\[${YELLOW}\]\u@\h\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]'
+  else
+    export PS1="\[${GREEN}\]\u@\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\[${RED}\]\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+  fi
+
+fi

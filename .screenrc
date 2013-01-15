@@ -1,0 +1,12 @@
+shell -$SHELL
+
+term xterm-color
+setenv SSH_AUTH_SOCK $SSH_AUTH_SOCK
+defscrollback 10000
+
+hardstatus alwayslastline '%{= .K}%-Lw%{= KW}%50>%n%f* %t%{= .K}%+Lw%< %{= kG}%-=%{-}'
+#hardstatus alwayslastline '%?%{yk}%-Lw%?%{01}%n*%f %t%?(%u)%?%?%{yk}%+Lw%?'
+#hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+
+bind f eval 'caption always' 'hardstatus ignore'
+bind F eval 'caption splitonly'    'hardstatus alwayslastline'

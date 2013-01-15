@@ -1,0 +1,6 @@
+alias ssh='ssh_func'
+
+ssh_func() {
+  export SSH_AUTH_SOCK=`~/code/bash-env/bin/get_ssh_sock.pl`
+  /usr/bin/ssh -A $*
+}
