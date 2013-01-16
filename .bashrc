@@ -72,6 +72,7 @@ if [ -e ~/bin/charade.exe ]; then
   if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
     eval `$SSHAGENT $SSHAGENTARGS`
     trap "kill $SSH_AGENT_PID" 0
+    alias ssh='/usr/bin/ssh -A'
   fi
 elif [ -e $CODE_BASE/bin/ssh-agentrc ]; then
   source $CODE_BASE/bin/ssh-agentrc
