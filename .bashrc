@@ -63,7 +63,7 @@ else
   export PS1='\[\e[32m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
 fi
 
-alias svndiff=~/bin/svndiff.pl
+alias svndiff=~/code/bash-env/bin/svndiff.pl
 alias gitdiff='git difftool'
 
 if [ -e ~/bin/charade.exe ]; then
