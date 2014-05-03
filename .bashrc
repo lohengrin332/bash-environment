@@ -86,3 +86,8 @@ export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 #OUYA dev paths
 export PATH=$PATH:~/code/adt-bundle-linux-x86_64-20130522/sdk/tools:~/code/adt-bundle-linux-x86_64-20130522/sdk/platform-tools
 export ANDROID_HOME=~/code/adt-bundle-linux-x86_64-20130522/sdk
+
+if [ -e /opt/ActivePerl-5.18/bin/perl ]; then
+  export PATH=/opt/ActivePerl-5.18/site/bin:/opt/ActivePerl-5.18/bin:$PATH
+  export MANPATH=/opt/ActivePerl-5.18/site/bin:/opt/ActivePerl-5.18/bin:$MANPATH
+fi
