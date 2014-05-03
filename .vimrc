@@ -87,11 +87,13 @@ au BufNewFile,BufRead *.rpt,*.sftp,*.cgi   setf perl
 " Ctrl_A n moves to the next tab in the list
 " Ctrl_A p moves to the previous tab in the list
 " Ctrl_A K close the current tab
-nmap <C-A>e :tabedit 
-nmap <C-A>c :tabnew<CR>
-nmap <C-A>n :tabnext<CR>
-nmap <C-A>p :tabprevious<CR>
-nmap <C-A>K :tabclose<CR>
+" nmap <C-A>e :tabedit 
+" nmap <C-A>c :tabnew<CR>
+" nmap <C-A>n :tabnext<CR>
+" nmap <C-A>p :tabprevious<CR>
+" nmap <C-A>K :tabclose<CR>
+nmap <C-l> :tabn<CR>
+nmap <C-h> :tabp<CR>
 
 
 filetype plugin on
