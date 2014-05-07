@@ -68,8 +68,8 @@ else
   #export PS1="[\u@\h \W]\$ "
   if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] ; then
     export PS1='\[${RED}\]\u@\h\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]'
-  elif [ $HOSTNAME == 'samdev' ]; then
-    export PS1='\[${YELLOW}\]\u@\h\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]'
+  elif [ $HOSTNAME == 'shaftoe' ]; then
+    export PS1="\[${GREEN}\]\u@\[${MAGENTA}\]\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\[${RED}\]\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
   else
     export PS1="\[${GREEN}\]\u@\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\[${RED}\]\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
   fi
