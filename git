@@ -1,0 +1,78 @@
+source $CODE_BASE/sqlite3_tools
+
+# switch to a branch marked as a work in progress
+alias gwip='gwip_func'
+gwip_func() {
+  prepare_sqlite
+  # convert from the old method
+  WIP=`get_value "Git_WIP"`
+  if [ -f ~/.wip ]; then
+    if [ -z "$WIP" ]; then
+      WIP=`cat ~/.wip`
+      set_value "Git_WIP" "$WIP"
+    fi
+    rm -f ~/.wip
+  fi
+
+  git checkout $WIP
+}
+
+# set a branch as the current wip branch
+alias set_gwip='set_gwip_func'
+set_gwip_func() {
+  prepare_sqlite
+  if [ -z "$1" ]; then
+    echo "Usage: set_gwip <branch name>"
+    return 1
+  fi
+
+  set_value "Git_WIP" "$1"
+}
+
+# show which branch is the current WIP
+alias get_gwip='get_gwip_func'
+get_gwip_func() {
+  prepare_sqlite
+  echo "Current WIP branch: " `get_value "Git_WIP"`
+}
+
+# go to default working branch
+alias ghome='ghome_func'
+ghome_func() {
+  prepare_sqlite
+  GHOME=`get_value Git_VMS_Main`
+  if [ -z "$GHOME" ]; then
+    echo "It looks like you don't have a home branch set. Here are you current branches:"
+    git branch
+    echo "Which branch would you like to use?"
+    read RE
+    if [ -z "$REPLY" ]; then
+      echo "You did not pick a branch. Goodbye."
+      return 1
+    else
+      set_value Git_VMS_Main "$REPLY"
+      HOME=$REPLY
+    fi
+  fi
+
+  git checkout $GHOME
+}
+
+# set default working branch
+alias set_ghome='set_ghome_func'
+set_ghome_func() {
+  prepare_sqlite
+  if [ -z "$1" ]; then
+    echo "Usage: set_ghome <default branch name>"
+    return 1
+  fi
+
+  set_value Git_VMS_Main "$1"
+}
+
+# show which branch is the current default working branch
+alias get_ghome='get_ghome_func'
+get_ghome_func() {
+  prepare_sqlite
+  echo "Current default working branch: " `get_value "Git_VMS_Main"`
+}

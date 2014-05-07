@@ -1,0 +1,34 @@
+# basic functionality for all scripts to inherit sqlite for rc files
+
+DB=`readlink -f ~/.rcdb`
+
+alias prepare_sqlite='prepare_sqlite_func'
+prepare_sqlite_func() {
+  if [ ! -f "$DB" ]; then
+    sqlite3 $DB 'create table Settings( Name varchar(25), Value varchar(125) )'
+  fi
+}
+
+alias get_value='get_value_func'
+get_value_func() {
+  if [ -z "$1" ]; then
+    echo ""
+    return 1
+  else
+    sqlite3 $DB "SELECT Value FROM Settings WHERE Name='$1'"
+  fi
+}
+
+alias set_value='set_value_func'
+set_value_func() {
+  if [[ -z "$2" ]]; then
+    echo "Usage: set_value <key> <value>"
+    return 1
+  fi
+
+  if [[ `sqlite3 $DB "SELECT count(*) FROM Settings WHERE Name='$1'"` -gt 0 ]]; then
+    sqlite3 $DB "UPDATE Settings SET Value='$2' WHERE Name='$1'"
+  else
+    sqlite3 $DB "INSERT INTO Settings (Name, Value) VALUES ('$1','$2')"
+  fi
+}

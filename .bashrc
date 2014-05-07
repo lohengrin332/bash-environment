@@ -12,6 +12,10 @@ if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
 fi
 
+if [ -f $CODE_BASE/git ]; then
+  . $CODE_BASE/git
+fi
+
 # User specific aliases and functions
 
 # Commented out in favor of using "set editing-mode vi" in .inputrc
