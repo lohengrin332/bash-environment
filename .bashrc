@@ -99,3 +99,8 @@ alias svndiff=~/bin/svndiff.pl
 alias gitdiff='git difftool'
 
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
+
+if [ -e "~/.bash_proprietary" ]; then
+  source ~/.bash_proprietary
+fi
+
