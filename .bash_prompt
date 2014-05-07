@@ -2,7 +2,7 @@
 
 function parse_git_dirty() {
   G_STATUS=$(git status 2> /dev/null | tail -n1)
-  [[ "$G_STATUS" != "nothing to commit, working directory clean" && "$G_STATUS" != '' ]] && echo "*"
+  ! [[ "$G_STATUS" =~ 'working directory clean' ]] && [[ "$G_STATUS" != '' ]] && echo "*"
 }
 
 function parse_git_branch() {

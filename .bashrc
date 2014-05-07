@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export CODE_BASE=$HOME/code/bash-env
-export INPUTRC='$HOME/.inputrc'
+export INPUTRC="$HOME/.inputrc"
 
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
