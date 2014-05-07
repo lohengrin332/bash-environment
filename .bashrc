@@ -5,11 +5,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-export CODE_BASE=~/code/bash-env
-export INPUTRC='~/.inputrc'
+export CODE_BASE=$HOME/code/bash-env
+export INPUTRC='$HOME/.inputrc'
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+if [ -f $HOME/.git-completion.bash ]; then
+  . $HOME/.git-completion.bash
 fi
 
 # User specific aliases and functions
@@ -20,7 +20,7 @@ fi
 alias cd='cd_func'
 cd_func() {
   if [ -z "$*" ]; then
-    pushd ~ > /dev/null
+    pushd $HOME > /dev/null
   elif [ $1 == '-' ]; then
     popd > /dev/null
   else
@@ -44,8 +44,8 @@ screen_func() {
   if [ -e /var/run/screen/S-lewisd/*.main ]; then
     screen -xS main
   else
-    cat ~/.screenrc > /tmp/$$_screenrc.tmp
-    cat ~/.screenrc_sessions >> /tmp/$$_screenrc.tmp
+    cat $HOME/.screenrc > /tmp/$$_screenrc.tmp
+    cat $HOME/.screenrc_sessions >> /tmp/$$_screenrc.tmp
     screen -c /tmp/$$_screenrc.tmp -S main
   fi
 }
@@ -58,8 +58,8 @@ else
   export VISUAL='/bin/vi'
 fi
 
-if [ -e ~/.bash_prompt ]; then
-  . ~/.bash_prompt
+if [ -e $HOME/.bash_prompt ]; then
+  . $HOME/.bash_prompt
 else
   #export PS1="[\u@\h \W]\$ "
   if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] || [ $HOSTNAME == 'ln5test-mbx-d-1.mindbrix.com' ] ; then
@@ -69,13 +69,13 @@ else
   fi
 fi
 
-export PATH="$PATH:~/bin"
+export PATH="$PATH:$HOME/bin"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;07'
 export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:";
 
-if [ -e ~/bin/charade.exe ]; then
-  SSHAGENT=~/bin/charade
+if [ -e $HOME/bin/charade.exe ]; then
+  SSHAGENT=$HOME/bin/charade
   SSHAGENTARGS='-s'
   if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
     eval `$SSHAGENT $SSHAGENTARGS`
@@ -93,7 +93,7 @@ fi
 #  /usr/bin/ssh -A $*
 #}
 
-alias svndiff=~/bin/svndiff.pl
+alias svndiff=$HOME/bin/svndiff.pl
 alias gitdiff='git difftool'
 
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
