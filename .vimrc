@@ -31,7 +31,13 @@ set hlsearch
 set ruler
 
 " set background to dark for syntax-higlighting purposes
-set background=dark
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+  colorscheme darkblue
+  set guifont=ProggyTinyTTSZ\ 12
+else
+  set background=dark
+endif
 
 " display mode INSERT/REPLACE/...
 set showmode
@@ -77,11 +83,11 @@ let javaScript_fold=1
 " Folding ^
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" set .rpt and .sftp files to use perl syntax
-au BufNewFile,BufRead *.rpt,*.sftp,*.cgi   setf perl
-
 
 " Tabbed editing
+nnoremap <C-h>     :tabprevious<CR>
+nnoremap <C-l>     :tabnext<CR>
+set tabpagemax=20
 " Ctrl_A e awaits a filename then edits that file in a new tab
 " Ctrl_A c opens a new tab
 " Ctrl_A n moves to the next tab in the list
@@ -92,11 +98,14 @@ au BufNewFile,BufRead *.rpt,*.sftp,*.cgi   setf perl
 " nmap <C-A>n :tabnext<CR>
 " nmap <C-A>p :tabprevious<CR>
 " nmap <C-A>K :tabclose<CR>
-nmap <C-l> :tabn<CR>
-nmap <C-h> :tabp<CR>
 
 
 filetype plugin on
+
+" set .rpt, .sftp, .wfl, .dist, and .wfd files to use perl syntax
+autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd   setf perl
+
+
 " Taglist settings
 filetype on
 let Tlist_Use_Horiz_Window = 0

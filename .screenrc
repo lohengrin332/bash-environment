@@ -3,6 +3,7 @@ shell -$SHELL
 term xterm-color
 setenv SSH_AUTH_SOCK $SSH_AUTH_SOCK
 defscrollback 10000
+termcapinfo xterm* ti@:te@
 
 hardstatus alwayslastline '%{= .K}%-Lw%{= KW}%50>%n%f* %t%{= .K}%+Lw%< %{= kG}%-=%{-}'
 #hardstatus alwayslastline '%?%{yk}%-Lw%?%{01}%n*%f %t%?(%u)%?%?%{yk}%+Lw%?'

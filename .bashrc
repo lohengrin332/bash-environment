@@ -5,15 +5,19 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-
 export CODE_BASE=~/code/bash-env
+export INPUTRC='~/.inputrc'
 
-set -o vi
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+# User specific aliases and functions
+
+# Commented out in favor of using "set editing-mode vi" in .inputrc
+#set -o vi
+
 alias cd='cd_func'
-alias bd='bd_func'
-alias sgrep='find -type f -not -wholename \*svn\* -and -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
-alias xml='vim_xml'
-alias myscreen='screen_func'
 cd_func() {
   if [ -z "$*" ]; then
     pushd ~ > /dev/null
@@ -23,31 +27,30 @@ cd_func() {
     pushd "$*" > /dev/null
   fi
 }
+alias bd='bd_func'
 bd_func() { popd $* > /dev/null; }
-aux() {
-  ps auxww|grep -e "^USER\|$*"|grep -v grep
-}
-gaux() {
-  grep -v grep|grep -e "^USER\|$*"
-}
+
+alias sgrep='find -type f -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+alias psgrep='find -type f "(" -iname \*.pl -or -iname \*.pm -or -iname \*.cgi ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+alias jsgrep='find -type f "(" -iname \*.html -or -iname \*.js -or -iname \*.json ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+
+alias xml='vim_xml'
 vim_xml() {
   xmllint --format "$1" | vim -R -
 }
+
+alias myscreen='screen_func'
 screen_func() {
-  if [ -e /var/run/screen/S-$USER/*.main ]; then
+  if [ -e /var/run/screen/S-lewisd/*.main ]; then
     screen -xS main
   else
-    cat ~/.screenrc > /tmp/$$_screen.tmp
-    cat ~/.screenrc_sessions >> /tmp/$$_screen.tmp
-    screen -c /tmp/$$_screen.tmp -S main
+    cat ~/.screenrc > /tmp/$$_screenrc.tmp
+    cat ~/.screenrc_sessions >> /tmp/$$_screenrc.tmp
+    screen -c /tmp/$$_screenrc.tmp -S main
   fi
 }
-if [ -e /usr/bin/vim-nox ]; then
-  export EDITOR='/usr/bin/vim-nox'
-  export VISUAL='/usr/bin/vim-nox'
-  alias vim='/usr/bin/vim-nox'
-  alias vimdiff='/usr/bin/vim-nox -dO'
-elif [ -e /usr/bin/vim ]; then
+
+if [ -e /usr/bin/vim ]; then
   export EDITOR='/usr/bin/vim'
   export VISUAL='/usr/bin/vim'
 else
@@ -59,11 +62,19 @@ if [ -e ~/.bash_prompt ]; then
   . ~/.bash_prompt
 else
   #export PS1="[\u@\h \W]\$ "
-  export PS1='\[\e[32m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] || [ $HOSTNAME == 'ln5test-mbx-d-1.mindbrix.com' ] ; then
+    export PS1='\[\e[31m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  elif [ $HOSTNAME == 'samdev' ]; then
+    export PS1='\[\e[33m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  else
+    export PS1='\[\e[32m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  fi
 fi
 
-alias svndiff=~/code/bash-env/bin/svndiff.pl
-alias gitdiff='git difftool'
+export PATH="$PATH:~/bin"
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='0;07'
+export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:";
 
 if [ -e ~/bin/charade.exe ]; then
   SSHAGENT=~/bin/charade
@@ -78,16 +89,13 @@ elif [ -e $CODE_BASE/bin/ssh-agentrc ]; then
 else
   alias ssh='ssh -A'
 fi
+#alias ssh='ssh_func'
+#ssh_func() {
+#  export SSH_AUTH_SOCK=`$HOME/code/get_ssh_sock.pl`
+#  /usr/bin/ssh -A $*
+#}
 
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='0;07'
-export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:";
+alias svndiff=~/bin/svndiff.pl
+alias gitdiff='git difftool'
 
-#OUYA dev paths
-export PATH=$PATH:~/code/adt-bundle-linux-x86_64-20130522/sdk/tools:~/code/adt-bundle-linux-x86_64-20130522/sdk/platform-tools
-export ANDROID_HOME=~/code/adt-bundle-linux-x86_64-20130522/sdk
-
-if [ -e /opt/ActivePerl-5.18/bin/perl ]; then
-  export PATH=/opt/ActivePerl-5.18/site/bin:/opt/ActivePerl-5.18/bin:$PATH
-  export MANPATH=/opt/ActivePerl-5.18/site/bin:/opt/ActivePerl-5.18/bin:$MANPATH
-fi
+export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
