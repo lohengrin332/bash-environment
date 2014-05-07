@@ -98,7 +98,7 @@ alias gitdiff='git difftool'
 
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
 
-if [ -e "~/.bash_proprietary" ]; then
-  source ~/.bash_proprietary
+if [ -e "$HOME/.bash_proprietary" ]; then
+  source $HOME/.bash_proprietary
 fi
 
