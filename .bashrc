@@ -45,12 +45,12 @@ vim_xml() {
 
 alias myscreen='screen_func'
 screen_func() {
-  if [ -e /var/run/screen/S-lewisd/*.main ]; then
-    screen -xS main
-  else
+  if [ -z `screen -ls|grep main` ]; then
     cat $CODE_BASE/.screenrc > /tmp/$$_screenrc.tmp
     cat $CODE_BASE/.screenrc_sessions >> /tmp/$$_screenrc.tmp
     screen -c /tmp/$$_screenrc.tmp -S main
+  else
+    screen -xS main
   fi
 }
 
