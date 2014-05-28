@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export CODE_BASE=$HOME/code/bash-env
-export INPUTRC="$HOME/.inputrc"
+export INPUTRC="$CODE_BASE/.inputrc"
 
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
@@ -48,8 +48,8 @@ screen_func() {
   if [ -e /var/run/screen/S-lewisd/*.main ]; then
     screen -xS main
   else
-    cat $HOME/.screenrc > /tmp/$$_screenrc.tmp
-    cat $HOME/.screenrc_sessions >> /tmp/$$_screenrc.tmp
+    cat $CODE_BASE/.screenrc > /tmp/$$_screenrc.tmp
+    cat $CODE_BASE/.screenrc_sessions >> /tmp/$$_screenrc.tmp
     screen -c /tmp/$$_screenrc.tmp -S main
   fi
 }
@@ -62,8 +62,8 @@ else
   export VISUAL='/bin/vi'
 fi
 
-if [ -e $HOME/.bash_prompt ]; then
-  . $HOME/.bash_prompt
+if [ -e $CODE_BASE/.bash_prompt ]; then
+  . $CODE_BASE/.bash_prompt
 else
   #export PS1="[\u@\h \W]\$ "
   if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] || [ $HOSTNAME == 'ln5test-mbx-d-1.mindbrix.com' ] ; then
@@ -92,7 +92,7 @@ fi
 #  /usr/bin/ssh -A $*
 #}
 
-alias svndiff=$HOME/bin/svndiff.pl
+alias svndiff=$CODE_BASE/bin/svndiff.pl
 alias gitdiff='git difftool'
 
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
