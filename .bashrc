@@ -10,9 +10,7 @@ if [ -f "$HOME/.bash_proprietary" ]; then
 fi
 
 if [ ! -d "$CODE_BASE" ]; then
-  echo "CODE_BASE: $CODE_BASE"
   export CODE_BASE=$HOME/code/bash-env
-  echo "CODE_BASE: $CODE_BASE"
 fi
 
 export INPUTRC="$CODE_BASE/.inputrc"
