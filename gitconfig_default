@@ -4,3 +4,7 @@
 	prompt = 0
 [push]
 	default = simple
+[branch]
+	autosetupmerge = true
+[apply]
+	whitespace = nowarn
