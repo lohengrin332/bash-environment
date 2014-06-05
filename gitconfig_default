@@ -8,3 +8,5 @@
 	autosetupmerge = true
 [apply]
 	whitespace = nowarn
+[core]
+	excludesfile = /home/dlewis/.gitignore
