@@ -1,6 +1,11 @@
 # basic functionality for all scripts to inherit sqlite for rc files
 
-DB=`readlink -f ~/.rcdb`
+DB=`readlink -f ~/.rcdb 2>/dev/null`
+
+if [ -z "$DB" ]; then
+    ln -s ~/.real_rcdb ~/.rcdb
+    DB=~/.real_rcdb
+fi
 
 alias prepare_sqlite='prepare_sqlite_func'
 prepare_sqlite_func() {
