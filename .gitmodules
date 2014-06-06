@@ -1,0 +1,9 @@
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule ".vim/bundle/vim-colors-vividchalk"]
+	path = .vim/bundle/vim-colors-vividchalk
+	url = https://github.com/tpope/vim-vividchalk
+[submodule ".vim/bundle/vim-distinguished"]
+	path = .vim/bundle/vim-distinguished
+	url = https://github.com/Lokaltog/vim-distinguished

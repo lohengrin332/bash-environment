@@ -36,6 +36,7 @@ if has('gui_running')
   colorscheme darkblue
   set guifont=ProggyTinyTTSZ\ 12
 else
+  colorscheme grb256
   set background=dark
 endif
 
@@ -47,6 +48,9 @@ set showmatch
 
 " enable syntax highlighting
 syntax on
+
+" use pathogen
+execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding v
