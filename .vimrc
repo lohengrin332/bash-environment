@@ -37,7 +37,6 @@ if has('gui_running')
   set guifont=ProggyTinyTTSZ\ 12
 else
   set background=dark
-  colorscheme zenburn
 endif
 
 " display mode INSERT/REPLACE/...
