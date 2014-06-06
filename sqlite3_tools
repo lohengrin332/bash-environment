@@ -3,7 +3,9 @@
 DB=`readlink -f ~/.rcdb 2>/dev/null`
 
 if [ -z "$DB" ]; then
-    ln -s ~/.real_rcdb ~/.rcdb
+    if [ ! -e ~/.rcdb ]; then
+        ln -s ~/.real_rcdb ~/.rcdb
+    fi
     DB=~/.real_rcdb
 fi
 
