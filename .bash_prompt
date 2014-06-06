@@ -1,12 +1,123 @@
 #TEST=1
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+
+__git_ps1_colorize_gitstring () {
+    if [[ -n "${ZSH_VERSION-}" ]]; then
+        local c_red='%F{red}'
+        local c_green='%F{green}'
+        local c_lblue='%F{blue}'
+        local c_clear='%f'
+    else
+        # Using \[ and \] around colors is necessary to prevent
+        # issues with command line editing/browsing/completion!
+        local c_red='\[\e[31m\]'
+        local c_green='\[\e[32m\]'
+        local c_lblue='\[\e[1;34m\]'
+        local c_clear='\[\e[0m\]'
+    fi
+    local bad_color=${RED}
+    local ok_color=${GREEN}
+    local flags_color=${LTBLUE}
+
+    local branch_color=""
+    if [ "$detached" = no ]; then
+        branch_color="$ok_color"
+    else
+        branch_color="$bad_color"
+    fi
+    c="$branch_color$c"
+
+    z="$c_clear$z"
+    if [ "$working" = "*" ]; then
+        working="$bad_color$working"
+    fi
+    if [ -n "$cached" ]; then
+        cached="$ok_color$cached"
+    fi
+    if [ -n "$stash" ]; then
+        stash="$flags_color$stash"
+    fi
+    if [ -n "$untracked" ]; then
+        untracked="$bad_color$untracked"
+    fi
+    r="$c_clear$r"
+}
 
 function parse_git_dirty() {
-  G_STATUS=$(git status 2> /dev/null | tail -n1)
-  ! [[ "$G_STATUS" =~ 'working directory clean' ]] && [[ "$G_STATUS" != '' ]] && echo "*"
+    local repo_info rev_parse_exit_code
+    repo_info="$(git rev-parse --git-dir --is-inside-git-dir --is-bare-repository --is-inside-work-tree --short HEAD 2>/dev/null)"
+    rev_parse_exit_code=$?
+
+    if [ -z "$repo_info" ]; then
+        return
+    fi
+
+    local short_sha
+    if [ "$rev_parse_exit_code" = "0" ]; then
+        short_sha="${repo_info##*$'\n'}"
+        repo_info="${repo_info%$'\n'*}"
+    fi
+
+    local inside_worktree="${repo_info##*$'\n'}"
+    repo_info="${repo_info%$'\n'*}"
+    local bare_repo="${repo_info##*$'\n'}"
+    repo_info="${repo_info%$'\n'*}"
+    local inside_gitdir="${repo_info##*$'\n'}"
+    local g="${repo_info%$'\n'*}"
+
+    local working=""
+    local cached=""
+    local stash=""
+    local untracked=""
+    local c=""
+    local p=""
+
+    if [ "true" = "$inside_gitdir" ]; then
+        if [ "true" = "$bare_repo" ]; then
+            c="BARE:"
+        else
+            b="GIT_DIR!"
+        fi
+    elif [ "true" = "$inside_worktree" ]; then
+        if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
+           [ "$(git config --bool bash.showDirtyState)" != "false" ]
+        then
+            git diff --no-ext-diff --quiet --exit-code || working="*"
+            if [ -n "$short_sha" ]; then
+                git diff-index --cached --quiet HEAD -- || cached="+"
+            else
+                cached="#"
+            fi
+        fi
+        if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ] &&
+           [ -r "$g/refs/stash" ]; then
+            stash="$"
+        fi
+
+        if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ] &&
+           [ "$(git config --bool bash.showUntrackedFiles)" != "false" ] &&
+           git ls-files --others --exclude-standard --error-unmatch -- '*' >/dev/null 2>/dev/null
+        then
+            untracked="%${ZSH_VERSION+%}"
+        fi
+    fi
+
+    local z="${GIT_PS1_STATESEPARATOR-" "}"
+
+    # NO color option unless in PROMPT_COMMAND mode
+    if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
+        __git_ps1_colorize_gitstring
+    fi
+
+    echo -n "$working$cached$stash$untracked"
 }
 
 function parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
+  BRANCH=$(git describe --contains --all HEAD 2>/dev/null)
+  echo "$BRANCH"
 }
 
 
@@ -66,12 +177,10 @@ if [ "$TEST" == '1' ]; then
 
 else
   #export PS1="[\u@\h \W]\$ "
-  if [ $HOSTNAME == 'shaftoe' ]; then
-    export PS1="\[${GREEN}\]\u@\[${MAGENTA}\]\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
-  elif [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ]; then
-    export PS1="\[${GREEN}\]\u@\[${MAGENTA}\]\h\[${YELLOW}\]:\[${WHITE}\]\$(__git_ps1)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+  if [ $HOSTNAME == 'shaftoe' ] || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ]; then
+    export PS1="\[${GREEN}\]\u@\[${MAGENTA}\]\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
   else
-    export PS1="\[${GREEN}\]\u@\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+    export PS1="\[${GREEN}\]\u@\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
   fi
 
 fi
