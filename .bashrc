@@ -41,9 +41,19 @@ cd_func() {
 alias bd='bd_func'
 bd_func() { popd $* > /dev/null; }
 
-alias sgrep='find ./ -type f -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
-alias psgrep='find ./ -type f "(" -iname \*.pl -or -iname \*.pm -or -iname \*.cgi ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
-alias jsgrep='find ./ -type f "(" -iname \*.html -or -iname \*.js -or -iname \*.json ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+if [ `which ack` ]; then
+    alias sgrep='echo "WTF?!? Use \"ack\"!!!" #'
+    alias psgrep='echo "WTF?!? Use \"ack --perl\"!!! (or "ack_perl")" #'
+    alias jsgrep='echo "WTF?!? Use \"ack --js --json --html\"!!! (or "ack_js")" #'
+    alias rsgrep='echo "WTF?!? Use \"ack --js --json --html\"!!! (or "ack_ruby")" #'
+    alias ack_perl='ack --perl'
+    alias ack_js='ack --js --json --html --tt'
+    alias ack_ruby='ack --ruby'
+else
+    alias sgrep='find ./ -type f -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+    alias psgrep='find ./ -type f "(" -iname \*.pl -or -iname \*.pm -or -iname \*.cgi ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+    alias jsgrep='find ./ -type f "(" -iname \*.html -or -iname \*.js -or -iname \*.json ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+fi
 
 alias xml='vim_xml'
 vim_xml() {
