@@ -38,6 +38,7 @@ if has('gui_running')
 else
   colorscheme grb256
   set background=dark
+  highlight Search ctermbg='Yellow' ctermfg='Black'
 endif
 
 " display mode INSERT/REPLACE/...
