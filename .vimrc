@@ -1,5 +1,8 @@
 " commented lines start with `"'
 
+" use pathogen
+execute pathogen#infect()
+
 
 " turn on mouse support
 set mouse=a
@@ -37,8 +40,21 @@ if has('gui_running')
   set guifont=ProggyTinyTTSZ\ 12
 else
   highlight Search ctermbg='Yellow' ctermfg='Black'
-  colorscheme candy
   set background=dark
+  let term_app = $TERM_PROGRAM
+  if term_app == 'iTerm.app'
+    " echom "Setting mac colorscheme"
+    if &diff
+      " echom "Setting grb256 for diff"
+      colorscheme grb256
+    else
+      " echom "Setting candy for editing"
+      colorscheme candy
+    endif
+  else
+    " echom "Setting grb256 for non-mac vim"
+    colorscheme grb256
+  endif
 endif
 
 " display mode INSERT/REPLACE/...
@@ -49,9 +65,6 @@ set showmatch
 
 " enable syntax highlighting
 syntax on
-
-" use pathogen
-execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding v
