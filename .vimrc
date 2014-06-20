@@ -36,9 +36,9 @@ if has('gui_running')
   colorscheme darkblue
   set guifont=ProggyTinyTTSZ\ 12
 else
-  colorscheme grb256
-  set background=dark
   highlight Search ctermbg='Yellow' ctermfg='Black'
+  colorscheme candy
+  set background=dark
 endif
 
 " display mode INSERT/REPLACE/...
@@ -82,7 +82,7 @@ set foldlevel=0
 let perl_fold_pod=1
 "let perl_fold_blocks=1
 "let perl_fold=1
-let javaScript_fold=1
+"let javaScript_fold=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding ^

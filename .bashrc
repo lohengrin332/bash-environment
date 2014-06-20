@@ -135,3 +135,7 @@ if [ -x /usr/local/bin/gls ]; then
     alias ls='/usr/local/bin/gls --color=auto'
 fi
 
+if [ -x /opt/local/bin/gfind ]; then
+    alias find='/opt/local/bin/gfind'
+fi
+
