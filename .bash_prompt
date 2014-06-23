@@ -116,7 +116,7 @@ function parse_git_dirty() {
 }
 
 function parse_git_branch() {
-  BRANCH=$(git branch|grep -e '^\*'|sed 's/^\* *//')
+  BRANCH=$(git branch 2>/dev/null|grep -e '^\*'|sed 's/^\* *//')
   echo "$BRANCH"
 }
 
