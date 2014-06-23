@@ -41,7 +41,7 @@ cd_func() {
 alias bd='bd_func'
 bd_func() { popd $* > /dev/null; }
 
-if [ `which ack &>/dev/null` ]; then
+if [ `which ack 2>/dev/null` ]; then
     alias sgrep='echo "WTF?!? Use \"ack\"!!!" #'
     alias psgrep='echo "WTF?!? Use \"ack --perl\"!!! (or "ack_perl")" #'
     alias jsgrep='echo "WTF?!? Use \"ack --js --json --html\"!!! (or "ack_js")" #'

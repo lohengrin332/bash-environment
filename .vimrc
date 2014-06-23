@@ -18,6 +18,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" menu-style tab completion
+set wildmenu
+
 " Disable word-wrap
 " set nowrap
 
