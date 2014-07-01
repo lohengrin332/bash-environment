@@ -1,6 +1,6 @@
 alias ssh='ssh_func'
 
 ssh_func() {
-  export SSH_AUTH_SOCK=`$CODE_BASE/bin/get_ssh_sock.pl`
-  /usr/bin/ssh -A $*
+    export SSH_AUTH_SOCK=`$CODE_BASE/bin/get_ssh_sock.pl`
+    /usr/bin/ssh -A $*
 }
