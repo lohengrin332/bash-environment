@@ -1,6 +1,12 @@
+alias _fix_ssh_auth_sock='auth_sock_func'
+
+auth_sock_func() {
+    export SSH_AUTH_SOCK=$($CODE_BASE/bin/get_ssh_sock.pl)
+}
+
 alias ssh='ssh_func'
 
 ssh_func() {
-    export SSH_AUTH_SOCK=`$CODE_BASE/bin/get_ssh_sock.pl`
+    auth_sock_func
     /usr/bin/ssh -A $*
 }
