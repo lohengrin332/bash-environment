@@ -28,6 +28,17 @@ fi
 # Commented out in favor of using "set editing-mode vi" in .inputrc
 #set -o vi
 
+alias _dbic_trace='dbic_trace_on'
+dbic_trace_on() {
+    export DBIC_TRACE=1
+    export DBIC_TRACE_PROFILE=console
+}
+alias _no_dbic_trace='dbic_trace_off'
+dbic_trace_off() {
+    unset DBIC_TRACE
+    unset DBIC_TRACE_PROFILE
+}
+
 alias cd='cd_func'
 cd_func() {
   if [ -z "$*" ]; then
