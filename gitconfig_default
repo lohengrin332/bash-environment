@@ -9,4 +9,4 @@
 [apply]
 	whitespace = nowarn
 [core]
-	excludesfile = /home/dlewis/.gitignore
+	excludesfile = $CODE_BASE/global_git_ignore
