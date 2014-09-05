@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/vim-distinguished"]
 	path = .vim/bundle/vim-distinguished
 	url = https://github.com/Lokaltog/vim-distinguished
+[submodule ".vim/bundle/ack.vim"]
+    path = .vim/bundle/ack.vim
+    url = git@github.com:mileszs/ack.vim.git
