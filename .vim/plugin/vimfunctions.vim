@@ -70,6 +70,7 @@ function TestExec()
   if has("perl")
     :perl <<EOF
       use strict;
+      VIM::Msg("It worked!");
 EOF
   endif
 endfunction
