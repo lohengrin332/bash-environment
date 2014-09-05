@@ -2,6 +2,7 @@
 
 " use pathogen
 execute pathogen#infect()
+execute pathogen#helptags()
 
 
 " turn on mouse support
@@ -17,6 +18,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+map gs :call TabSession()<CR>
 
 " menu-style tab completion
 set wildmenu
@@ -131,9 +133,11 @@ autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd   setf perl
 filetype on
 let Tlist_Use_Horiz_Window = 0
 let Tlist_Use_Right_Window = 1
-source ~/.vim/vimfunctions
+
+" VimFunctions settings
 map gt :call LoadSourceFile()<CR>
 map go :call OpenSourceFile()<CR>
+map gi :call ShowINC()<CR>
 
 
 " Terminal/other settings
