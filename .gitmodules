@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/perlmodop"]
 	path = .vim/bundle/perlmodop
 	url = https://github.com/lohengrin332/perlmodop.git
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
