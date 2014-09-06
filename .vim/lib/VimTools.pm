@@ -52,8 +52,10 @@ sub splitLineToParts {
     my $line = shift;
 
     my @parts;
+    # split the line on characters which are ineligible for module names
     for my $part(split(qr{[^A-Za-z0-9_:]+}, $line)) {
         VIM::Msg($part) if($self->debug);
+        # confirm that the part is a valid module name
         push(@parts, $part) if($part =~ m{\A [A-Z_a-z] [0-9A-Z_a-z]* (?: :: [0-9A-Z_a-z]+)* \z}x);
     }
 

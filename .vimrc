@@ -18,7 +18,23 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" Sets up reasonable defaults for using a tab-sensitive file, such as a Makefile
+function TabSession()
+    set tabstop=8
+    set shiftwidth=8
+    set softtabstop=8
+    set noexpandtab
+endfunction
 map gs :call TabSession()<CR>
+
+" Restores default tabbing settings
+function NoTabSession()
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+    set expandtab
+endfunction
 
 " menu-style tab completion
 set wildmenu
@@ -135,9 +151,9 @@ let Tlist_Use_Horiz_Window = 0
 let Tlist_Use_Right_Window = 1
 
 " VimFunctions settings
-map gt :call LoadSourceFile()<CR>
-map go :call OpenSourceFile()<CR>
-map gi :call ShowINC()<CR>
+map gt :call perlmodop#LoadPerlSourceFile()<CR>
+map go :call perlmodop#OpenPerlSourceFile()<CR>
+map gi :call perlmodop#ShowPerlINC()<CR>
 
 
 " Terminal/other settings
