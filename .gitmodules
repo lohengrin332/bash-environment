@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/Align"]
 	path = .vim/bundle/Align
 	url = https://github.com/vim-scripts/Align.git
+[submodule ".vim/bundle/perlmodop"]
+	path = .vim/bundle/perlmodop
+	url = https://github.com/lohengrin332/perlmodop.git
