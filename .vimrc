@@ -13,11 +13,17 @@ set mouse=a
 " automatically indent lines (default)
 set autoindent
 
-" set tab width, default is 8
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+" Sets default tabbing settings
+function NoTabSession()
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+    set expandtab
+endfunction
+map gns :call NoTabSession()<CR>
+
+" set tabstop, expandtab, etc
+call NoTabSession()
 
 " Sets up reasonable defaults for using a tab-sensitive file, such as a Makefile
 function TabSession()
@@ -27,15 +33,6 @@ function TabSession()
     set noexpandtab
 endfunction
 map gs :call TabSession()<CR>
-map gns :call NoTabSession()<CR>
-
-" Restores default tabbing settings
-function NoTabSession()
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4
-    set expandtab
-endfunction
 
 " menu-style tab completion
 set wildmenu
