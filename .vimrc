@@ -27,6 +27,7 @@ function TabSession()
     set noexpandtab
 endfunction
 map gs :call TabSession()<CR>
+map gns :call NoTabSession()<CR>
 
 " Restores default tabbing settings
 function NoTabSession()
