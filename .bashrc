@@ -73,12 +73,17 @@ vim_xml() {
 
 alias myscreen='screen_func'
 screen_func() {
-  if [ -z "$(screen -ls|grep main)" ]; then
-    cat $CODE_BASE/.screenrc > /tmp/$$_screenrc.tmp
-    cat $CODE_BASE/.screenrc_sessions >> /tmp/$$_screenrc.tmp
-    screen -c /tmp/$$_screenrc.tmp -S main
+  SCREEN_NAME='main'
+  if [ "$1" ]; then
+    SCREEN_NAME=$1
+  fi
+  TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
+  if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
+    cat $CODE_BASE/.screenrc > $TMP_FILE
+    cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
+    screen -c $TMP_FILE -S $SCREEN_NAME
   else
-    screen -xS main
+    screen -xS $SCREEN_NAME
   fi
 }
 
