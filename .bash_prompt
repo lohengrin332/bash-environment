@@ -178,9 +178,12 @@ if [ "$TEST" == '1' ]; then
 else
   #export PS1="[\u@\h \W]\$ "
   if [ $HOSTNAME == 'shaftoe' ] || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ] || [ $HOSTNAME == 'dlewis-vz-dev-01.tigerlead.local' ]; then
-    export PS1="\[${GREEN}\]\u@\[${MAGENTA}\]\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+    HN="\[${MAGENTA}\]\h"
+  elif [ $HOSTNAME == 'jd-local-vm' ]; then
+    HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h"
   else
-    export PS1="\[${GREEN}\]\u@\h\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+    HN="\h"
   fi
+  export PS1="\[${GREEN}\]\u@${HN}\[${RESET}\]\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
 
 fi
