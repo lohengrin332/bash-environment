@@ -34,6 +34,10 @@ function TabSession()
 endfunction
 map gs :call TabSession()<CR>
 
+" Sets up a command to prettify the current json line
+nmap gj :.!python -m json.tool<CR>
+vmap gj :!python -m json.tool<CR>
+
 " menu-style tab completion
 set wildmenu
 
