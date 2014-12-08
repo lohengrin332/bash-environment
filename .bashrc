@@ -39,6 +39,15 @@ dbic_trace_off() {
     unset DBIC_TRACE_PROFILE
 }
 
+alias _dbi_trace='dbi_trace_on'
+dbi_trace_on() {
+    export DBI_TRACE=SQL
+}
+alias _no_dbi_trace='dbi_trace_off'
+dbi_trace_off() {
+    unset DBI_TRACE
+}
+
 alias cd='cd_func'
 cd_func() {
   if [ -z "$*" ]; then
