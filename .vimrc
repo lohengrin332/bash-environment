@@ -145,6 +145,7 @@ filetype plugin on
 
 " set .rpt, .sftp, .wfl, .dist, and .wfd files to use perl syntax
 autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd   setf perl
+autocmd BufNewFile,BufRead *.hbs    setf mustache
 
 
 " Taglist settings
