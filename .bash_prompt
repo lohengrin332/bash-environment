@@ -179,7 +179,7 @@ else
   #export PS1="[\u@\h \W]\$ "
   if [ $HOSTNAME == 'shaftoe' ] || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ] || [ $HOSTNAME == 'dlewis-vz-dev-01.tigerlead.local' ]; then
     HN="\[${MAGENTA}\]\h"
-  elif [ $HOSTNAME == 'jd-local-vm' ]; then
+  elif [ $HOSTNAME == 'jd-local-vm' ] || [ $HOSTNAME == 'jd-local-vm.local' ]; then
     HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h"
   else
     HN="\h"
