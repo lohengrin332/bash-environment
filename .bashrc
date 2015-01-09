@@ -164,3 +164,5 @@ if [ -x /opt/local/bin/gfind ]; then
     alias find='/opt/local/bin/gfind'
 fi
 
+alias ':q'='echo "Don''t quit now!"'
+alias ':qa'=':q'
