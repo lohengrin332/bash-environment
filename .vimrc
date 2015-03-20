@@ -22,6 +22,15 @@ function NoTabSession()
 endfunction
 map gns :call NoTabSession()<CR>
 
+" Sets default tabbing settings
+function NoTabSession3()
+    set tabstop=3
+    set shiftwidth=3
+    set softtabstop=3
+    set expandtab
+endfunction
+map g3 :call NoTabSession3()<CR>
+
 " set tabstop, expandtab, etc
 call NoTabSession()
 
