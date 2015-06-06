@@ -383,7 +383,7 @@ if has("autocmd")
 endif " has("autocmd")
 
 " Changed default required by SuSE security team
-set modelines=0
+set modelines=5
 
 " get easier to use and more user friendly vim defaults
 " /etc/vimrc ends here
