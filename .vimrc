@@ -137,7 +137,7 @@ let perl_fold_pod=1
 " Tabbed editing
 nnoremap <C-h>     :tabprevious<CR>
 nnoremap <C-l>     :tabnext<CR>
-set tabpagemax=20
+set tabpagemax=50
 " Ctrl_A e awaits a filename then edits that file in a new tab
 " Ctrl_A c opens a new tab
 " Ctrl_A n moves to the next tab in the list
