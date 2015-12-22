@@ -15,42 +15,45 @@ set autoindent
 
 " Sets default tabbing settings
 function NoTabSession()
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4
-    set expandtab
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal softtabstop=4
+    setlocal expandtab
 endfunction
 map gns :call NoTabSession()<CR>
 
 " Sets default tabbing settings
 function NoTabSession3()
-    set tabstop=3
-    set shiftwidth=3
-    set softtabstop=3
-    set expandtab
+    setlocal tabstop=3
+    setlocal shiftwidth=3
+    setlocal softtabstop=3
+    setlocal expandtab
 endfunction
 map g3 :call NoTabSession3()<CR>
 
 " Sets default tabbing settings
 function NoTabSession2()
-    set tabstop=2
-    set shiftwidth=2
-    set softtabstop=2
-    set expandtab
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal softtabstop=2
+    setlocal expandtab
 endfunction
 map g2 :call NoTabSession2()<CR>
 
-" set tabstop, expandtab, etc
-call NoTabSession()
-
 " Sets up reasonable defaults for using a tab-sensitive file, such as a Makefile
 function TabSession()
-    set tabstop=8
-    set shiftwidth=8
-    set softtabstop=8
-    set noexpandtab
+    setlocal tabstop=8
+    setlocal shiftwidth=8
+    setlocal softtabstop=8
+    setlocal noexpandtab
 endfunction
 map gs :call TabSession()<CR>
+
+" set default tabstop, expandtab, etc
+call NoTabSession()
+
+" set .rb files to use two-space tabstops
+autocmd BufNewFile,BufRead *.rb,*.yml :call NoTabSession2()
 
 " Sets up a command to prettify the current json line
 nmap gj :.!python -m json.tool<CR>
