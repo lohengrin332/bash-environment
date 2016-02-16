@@ -55,9 +55,15 @@ call NoTabSession()
 " set .rb files to use two-space tabstops
 autocmd BufNewFile,BufRead *.rb,*.yml :call NoTabSession2()
 
-" Sets up a command to prettify the current json line
+" Sets up a command to prettify the current/selected json line
 nmap gj :.!python -m json.tool<CR>
 vmap gj :!python -m json.tool<CR>
+
+" Sets up a command to prettify XML
+" Entire file
+nmap gxml :1,$!xmllint --format -<CR>
+" Selected lines
+vmap gxml :!xmllint --format -<CR>
 
 " menu-style tab completion
 set wildmenu
