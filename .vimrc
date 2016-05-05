@@ -53,7 +53,7 @@ map gs :call TabSession()<CR>
 call NoTabSession()
 
 " set .rb files to use two-space tabstops
-autocmd BufNewFile,BufRead *.rb,*.yml :call NoTabSession2()
+autocmd BufNewFile,BufRead *.rb,*.yml,*.erb,*.rake :call NoTabSession2()
 
 " Sets up a command to prettify the current/selected json line
 nmap gj :.!python -m json.tool<CR>
