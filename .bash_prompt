@@ -184,7 +184,7 @@ else
     HN="\[${MAGENTA}\]\h"
   elif [ $HOSTNAME == 'jd-local-vm' ] || [ $HOSTNAME == 'jd-local-vm.local' ]; then
     HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h"
-  elif [ $HOSTNAME == 'mdl-rpi' ]; then
+  elif [ $HOSTNAME == 'rpi-mdl-00' ]; then
     HN="\[${BLACK}\]\[${YELLOW_HILITE}\]\h"
   else
     HN="\h"
