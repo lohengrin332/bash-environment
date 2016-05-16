@@ -9,4 +9,4 @@
 [apply]
 	whitespace = nowarn
 [core]
-	excludesfile = $CODE_BASE/global_git_ignore
+	excludesfile = ${CODE_BASE}/global_git_ignore # Replace "${CODE_BASE}" with actual path; vars in .gitconfig aren't processed.
