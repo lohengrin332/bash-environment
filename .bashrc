@@ -140,8 +140,8 @@ alias gitdiff='git difftool'
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
 
 export PATH="$PATH:$HOME/bin"
-export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;07'
+alias grep='grep --color=auto'
 
 dircolors_exe=/usr/bin/dircolors
 if [ ! -x "$dircolors_exe" ]; then
@@ -166,3 +166,7 @@ fi
 
 alias ':q'='echo "Don''t quit now!"'
 alias ':qa'=':q'
+
+if [ -f "$HOME/.bash_proprietary_post" ]; then
+    source $HOME/.bash_proprietary_post
+fi
