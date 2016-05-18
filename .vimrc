@@ -50,7 +50,7 @@ endfunction
 map gs :call TabSession()<CR>
 
 " set default tabstop, expandtab, etc
-call NoTabSession()
+autocmd BufNewFile,BufRead * :call NoTabSession()
 
 " set .rb files to use two-space tabstops
 autocmd BufNewFile,BufRead *.rb,*.yml,*.erb,*.rake :call NoTabSession2()
