@@ -14,13 +14,13 @@ set mouse=a
 set autoindent
 
 " Sets default tabbing settings
-function NoTabSession()
+function NoTabSession4()
     setlocal tabstop=4
     setlocal shiftwidth=4
     setlocal softtabstop=4
     setlocal expandtab
 endfunction
-map gns :call NoTabSession()<CR>
+map g4 :call NoTabSession4()<CR>
 
 " Sets default tabbing settings
 function NoTabSession3()
@@ -50,7 +50,10 @@ endfunction
 map gs :call TabSession()<CR>
 
 " set default tabstop, expandtab, etc
-autocmd BufNewFile,BufRead * :call NoTabSession()
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4
+setlocal expandtab
 
 " set .rb files to use two-space tabstops
 autocmd BufNewFile,BufRead *.rb,*.yml,*.erb,*.rake :call NoTabSession2()
