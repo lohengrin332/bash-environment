@@ -10,3 +10,4 @@
     git subtree pull --squash --prefix=.vim/bundle/vim-perl              https://github.com/vim-perl/vim-perl.git            master 
     git subtree pull --squash --prefix=.vim/bundle/vim-matchit           https://github.com/edsono/vim-matchit.git           master 
     git subtree pull --squash --prefix=.vim/bundle/mojo.vim              https://github.com/yko/mojo.vim.git                 master 
+    git subtree pull --squash --prefix=.vim/bundle/typescript-vim        https://github.com/leafgarland/typescript-vim.git   master
