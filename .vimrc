@@ -176,6 +176,7 @@ filetype plugin on
 " set .rpt, .sftp, .wfl, .dist, and .wfd files to use perl syntax
 autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd,*.psgi   setf perl
 autocmd BufNewFile,BufRead *.hbs    setf mustache
+autocmd BufNewFile,BufRead Jenkinsfile*  setf groovy
 
 
 " Taglist settings
