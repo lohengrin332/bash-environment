@@ -177,6 +177,8 @@ filetype plugin on
 autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd,*.psgi   setf perl
 autocmd BufNewFile,BufRead *.hbs    setf mustache
 autocmd BufNewFile,BufRead Jenkinsfile*  setf groovy
+autocmd BufNewFile,BufRead *.html.tt,*.tt.html  setf tt2html
+autocmd BufNewFile,BufRead *.js.tt,*.tt.js      setf tt2js
 
 
 " Taglist settings
