@@ -86,13 +86,17 @@ screen_func() {
   if [ "$1" ]; then
     SCREEN_NAME=$1
   fi
-  TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
-  if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
-    cat $CODE_BASE/.screenrc > $TMP_FILE
-    cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
-    screen -c $TMP_FILE -S $SCREEN_NAME
-  else
-    screen -xS $SCREEN_NAME
+  if [ -e /usr/bin/screen ]; then
+    TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
+    if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
+      cat $CODE_BASE/.screenrc > $TMP_FILE
+      cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
+      screen -c $TMP_FILE -S $SCREEN_NAME
+    else
+      screen -xS $SCREEN_NAME
+    fi
+  elif [ -e /usr/bin/tmux ]; then
+    tmux a -f $CODE_BASE/.tmux.conf -t $SCREEN_NAME
   fi
 }
 

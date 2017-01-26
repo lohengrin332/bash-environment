@@ -106,8 +106,19 @@ else
       colorscheme candy
     endif
   else
-    " echom "Setting grb256 for non-mac vim"
-    colorscheme grb256
+    let term_app = $TERM
+    if term_app == 'xterm'
+        if &diff
+          " echom "Setting grb256 for diff"
+          colorscheme grb256
+        else
+          " echom "Setting darkblue for vanilla xterm"
+          colorscheme darkblue
+        endif
+    else
+        " echom "Setting grb256 for non-mac vim"
+        colorscheme grb256
+    endif
   endif
 endif
 
