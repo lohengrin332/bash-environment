@@ -96,7 +96,7 @@ screen_func() {
       screen -xS $SCREEN_NAME
     fi
   elif [ -e /usr/bin/tmux ]; then
-    tmux a -f $CODE_BASE/.tmux.conf -t $SCREEN_NAME
+    tmux -f $CODE_BASE/.tmux.conf a -t $SCREEN_NAME
   fi
 }
 
