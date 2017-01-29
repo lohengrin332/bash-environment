@@ -192,6 +192,16 @@ autocmd BufNewFile,BufRead Jenkinsfile*  setf groovy
 autocmd BufNewFile,BufRead *.html.tt,*.tt.html,*.tt setf tt2html
 autocmd BufNewFile,BufRead *.js.tt,*.tt.js          setf tt2js
 
+" let g:syntastic_javascript_checkers = ['standard']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
 
 " Taglist settings
 filetype on
