@@ -80,23 +80,37 @@ vim_xml() {
   xmllint --format "$1" | vim -R -
 }
 
-alias myscreen='screen_func'
+if [ `which tmux 2>/dev/null` ]; then
+  alias myscreen='echo WTF?!? Use \"tmux\"!!! #'
+  alias mytmux='tmux_func'
+else
+  alias myscreen='screen_func'
+fi
+
+tmux_func() {
+  SESSION_NAME=main
+  if [ "$1" ]; then
+    SESSION_NAME=$1
+  fi
+  if [ -z "$(tmux ls|grep $SESSION_NAME)" ]; then
+    tmux new -s $SESSION_NAME
+  else
+    tmux a -t $SESSION_NAME
+  fi
+}
+
 screen_func() {
   SCREEN_NAME='main'
   if [ "$1" ]; then
     SCREEN_NAME=$1
   fi
-  if [ -e /usr/bin/screen ]; then
-    TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
-    if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
-      cat $CODE_BASE/.screenrc > $TMP_FILE
-      cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
-      screen -c $TMP_FILE -S $SCREEN_NAME
-    else
-      screen -xS $SCREEN_NAME
-    fi
-  elif [ -e /usr/bin/tmux ]; then
-    tmux -f $CODE_BASE/.tmux.conf a -t $SCREEN_NAME
+  TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
+  if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
+    cat $CODE_BASE/.screenrc > $TMP_FILE
+    cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
+    screen -c $TMP_FILE -S $SCREEN_NAME
+  else
+    screen -xS $SCREEN_NAME
   fi
 }
 
