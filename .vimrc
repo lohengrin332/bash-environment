@@ -79,13 +79,12 @@ set wildmenu
 " select case-insenitive search (not default)
 set ignorecase
 
-" turn on search highlighting
-set hlsearch
-
-
 " Color/Display settings
 " show cursor line and column in the status line
 set ruler
+
+" turn on search highlighting
+set hlsearch
 
 " set background to dark for syntax-higlighting purposes
 if has('gui_running')
@@ -93,38 +92,38 @@ if has('gui_running')
   colorscheme darkblue
   set guifont=ProggyTinyTTSZ\ 12
 else
-  if &diff
-    colorscheme grb256
+  set background=dark
+  let term_app = $TERM_PROGRAM
+  if term_app == 'iTerm.app'
+    " echom "Setting mac colorscheme"
+    if &diff
+      " echom "Setting grb256 for diff"
+      colorscheme grb256
+    else
+      " echom "Setting candy for editing"
+      colorscheme candy
+    endif
   else
-    colorscheme darkblue
+    if &diff
+      " echom "Setting grb256 for diff"
+      colorscheme grb256
+    else
+      if &t_Co != 256
+        " echom "Setting koehler for 16 color terminal"
+        colorscheme koehler
+      else
+        let term_app = $TERM
+        if term_app == 'xterm'
+          " echom "Setting darkblue for vanilla xterm"
+          colorscheme darkblue
+        else
+          " echom "Setting grb256 for non-mac vim"
+          colorscheme grb256
+        endif
+      endif
+    endif
   endif
-  " highlight Search ctermbg='Yellow' ctermfg='Black'
-  " set background=dark
-  " let term_app = $TERM_PROGRAM
-  " if term_app == 'iTerm.app'
-  "   " echom "Setting mac colorscheme"
-  "   if &diff
-  "     " echom "Setting grb256 for diff"
-  "     colorscheme grb256
-  "   else
-  "     " echom "Setting candy for editing"
-  "     colorscheme candy
-  "   endif
-  " else
-  "   let term_app = $TERM
-  "   if term_app == 'xterm'
-  "       if &diff
-  "         " echom "Setting grb256 for diff"
-  "         colorscheme grb256
-  "       else
-  "         " echom "Setting darkblue for vanilla xterm"
-  "         colorscheme darkblue
-  "       endif
-  "   else
-  "       " echom "Setting grb256 for non-mac vim"
-  "       colorscheme grb256
-  "   endif
-  " endif
+  highlight Search ctermbg='Yellow' ctermfg='Black'
 endif
 
 " display mode INSERT/REPLACE/...
