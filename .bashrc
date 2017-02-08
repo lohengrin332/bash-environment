@@ -83,9 +83,8 @@ vim_xml() {
 if [ `which tmux 2>/dev/null` ]; then
   alias myscreen='echo WTF?!? Use \"tmux\"!!! #'
   alias mytmux='_tmux_func'
-else
-  alias myscreen='screen_func'
 fi
+alias myscreen='screen_func'
 
 _tmux_func() {
   SESSION_NAME=main
