@@ -180,9 +180,12 @@ else
   if [ $HOSTNAME == 'shaftoe' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-01.tigerlead.local' ] \
-  || [ $HOSTNAME == 'dlewis-vz-dev-ddc-01.tigerlead.local' ]; then
+  || [ $HOSTNAME == 'dlewis-vz-dev-ddc-01.tigerlead.local' ] \
+  || [ $HOSTNAME == 'jlewis' ]; then
     HN="\[${MAGENTA}\]\h"
-  elif [ $HOSTNAME == 'jd-local-vm' ] || [ $HOSTNAME == 'jd-local-vm.local' ]; then
+  elif [ $HOSTNAME == 'jd-local-vm' ] \
+    || [ $HOSTNAME == 'jd-local-vm.local' ] \
+    || [ $HOSTNAME == 'i-124615' ]; then
     HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h"
   elif [ $HOSTNAME == 'rpi-mdl-00' ]; then
     HN="\[${BLACK}\]\[${YELLOW_HILITE}\]\h"

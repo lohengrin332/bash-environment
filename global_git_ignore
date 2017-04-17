@@ -3,3 +3,5 @@
 .vim/bundle/*/doc/tags
 .vim/doc/tags
 doc/tags
+
+.ant-targets-build.xml
