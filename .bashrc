@@ -153,6 +153,7 @@ fi
 
 alias svndiff=$CODE_BASE/bin/svndiff.pl
 alias gitdiff='git difftool'
+alias gitmerge='git mergetool'
 
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
 
