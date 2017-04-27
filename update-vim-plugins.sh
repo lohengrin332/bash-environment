@@ -12,4 +12,4 @@
     git subtree pull --squash --prefix=.vim/bundle/mojo.vim              https://github.com/yko/mojo.vim.git                 master 
     git subtree pull --squash --prefix=.vim/bundle/typescript-vim        https://github.com/leafgarland/typescript-vim.git   master
     git subtree pull --squash --prefix=.vim/bundle/syntastic             https://github.com/vim-syntastic/syntastic.git      master
-    git subtree pull --squash --prefix=.vim/vim-sleuth                   https://github.com/tpope/vim-sleuth.git             master
+    git subtree pull --squash --prefix=.vim/bundle/vim-sleuth            https://github.com/tpope/vim-sleuth.git             master
