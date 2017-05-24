@@ -1,0 +1,20 @@
+
+" Search settings
+" select case-insenitive search (not default)
+set ignorecase
+
+" Color/Display settings
+" show cursor line and column in the status line
+set ruler
+
+" turn on search highlighting
+set hlsearch
+
+" display mode INSERT/REPLACE/...
+set showmode
+
+" show matching brackets
+set showmatch
+
+" enable syntax highlighting
+syntax on
