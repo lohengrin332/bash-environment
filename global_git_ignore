@@ -4,4 +4,17 @@
 .vim/doc/tags
 doc/tags
 
+.ant_targets
 .ant-targets-build.xml
+
+*~
+.DS_Store
+.python-version
+*.iml
+*.pyc
+.ant-targets-build.xml
+ide-lib/
+clippy-lib/
+.idea/
+.rembackup/
+.remconfig.json
