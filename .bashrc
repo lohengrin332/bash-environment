@@ -15,6 +15,8 @@ fi
 
 export INPUTRC="$CODE_BASE/.inputrc"
 
+export CDPATH='.'
+
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
 fi
