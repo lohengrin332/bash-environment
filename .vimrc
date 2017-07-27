@@ -59,6 +59,12 @@ set expandtab
 autocmd BufNewFile,BufRead *.rb,*.yml,*.erb,*.rake :call NoTabSession2()
 autocmd BufNewFile,BufRead Changes                 :call NoTabSession2()
 
+" setup some defaults specifically for Python files
+autocmd BufNewFile,BufRead *.py :set cc=119
+
+" ignore *.pyc in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
 " Sets up a command to prettify the current/selected json line
 nmap gj :.!python -m json.tool<CR>
 vmap gj :!python -m json.tool<CR>
