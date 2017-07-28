@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+export CDPATH='.'
+
 if [ -f "$HOME/.bash_proprietary" ]; then
   source $HOME/.bash_proprietary
 fi
@@ -14,8 +16,6 @@ if [ ! -d "$CODE_BASE" ]; then
 fi
 
 export INPUTRC="$CODE_BASE/.inputrc"
-
-export CDPATH='.'
 
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
