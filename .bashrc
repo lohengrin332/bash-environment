@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-export CDPATH='.'
+export CDPATH=".:$HOME/code:$CDPATH"
 
 if [ -f "$HOME/.bash_proprietary" ]; then
   source $HOME/.bash_proprietary
