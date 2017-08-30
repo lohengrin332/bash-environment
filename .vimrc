@@ -7,11 +7,24 @@ execute pathogen#helptags()
 
 " turn on mouse support
 set mouse=a
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+endif
 
 
 " Indentation settings
 " automatically indent lines (default)
 set autoindent
+
+" highlight indentation levels in alternating colors
+let g:indent_guides_enable_on_vim_startup = 1
+
+function ResetIndentGuides()
+    IndentGuidesToggle
+    IndentGuidesToggle
+endfunction
 
 " Sets default tabbing settings
 function NoTabSession4()
@@ -19,6 +32,7 @@ function NoTabSession4()
     setlocal shiftwidth=4
     setlocal softtabstop=4
     setlocal expandtab
+    call ResetIndentGuides()
 endfunction
 map g4 :call NoTabSession4()<CR>
 
@@ -28,6 +42,7 @@ function NoTabSession3()
     setlocal shiftwidth=3
     setlocal softtabstop=3
     setlocal expandtab
+    call ResetIndentGuides()
 endfunction
 map g3 :call NoTabSession3()<CR>
 
@@ -37,6 +52,7 @@ function NoTabSession2()
     setlocal shiftwidth=2
     setlocal softtabstop=2
     setlocal expandtab
+    call ResetIndentGuides()
 endfunction
 map g2 :call NoTabSession2()<CR>
 
@@ -46,6 +62,7 @@ function TabSession()
     setlocal shiftwidth=8
     setlocal softtabstop=8
     setlocal noexpandtab
+    call ResetIndentGuides()
 endfunction
 map gs :call TabSession()<CR>
 
