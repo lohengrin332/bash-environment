@@ -86,6 +86,16 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 nmap gj :.!python -m json.tool<CR>
 vmap gj :!python -m json.tool<CR>
 
+" URL decode line/block
+" Derived from https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
+nmap gud :.!python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
+vmap gud :!python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
+
+" URL encode line/block
+" Derived from https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
+nmap gue :.!python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
+vmap gue :!python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
+
 " Sets up a command to prettify XML
 " Entire file
 nmap gxml :1,$!xmllint --format -<CR>
@@ -214,8 +224,8 @@ filetype plugin on
 
 " set .rpt, .sftp, .wfl, .dist, and .wfd files to use perl syntax
 autocmd BufNewFile,BufRead *.rpt,*.sftp,*.cgi,*.wfl,*.dist,*.wfd,*.psgi   setf perl
-autocmd BufNewFile,BufRead *.hbs    setf mustache
-autocmd BufNewFile,BufRead Jenkinsfile*  setf groovy
+autocmd BufNewFile,BufRead *.hbs,*.tmpl    setf mustache
+autocmd BufNewFile,BufRead Jenkinsfile*,*.jenkinsfile  setf groovy
 autocmd BufNewFile,BufRead *.html.tt,*.tt.html,*.tt setf tt2html
 autocmd BufNewFile,BufRead *.js.tt,*.tt.js          setf tt2js
 
