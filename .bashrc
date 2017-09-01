@@ -93,7 +93,7 @@ _tmux_func() {
   if [ "$1" ]; then
     SESSION_NAME=$1
   fi
-  if [ -z "$(tmux ls|grep $SESSION_NAME)" ]; then
+  if [ -z "$(tmux ls 2> /dev/null|grep $SESSION_NAME)" ]; then
     tmux new -s $SESSION_NAME
   else
     tmux a -t $SESSION_NAME
