@@ -76,3 +76,9 @@ get_ghome_func() {
   prepare_sqlite
   echo "Current default working branch: " `get_value "Git_VMS_Main"`
 }
+
+# alias to find deleted files
+alias _git_find_deleted_files='_git_find_deleted_files_func'
+_git_find_deleted_files_func() {
+  git log --diff-filter=D --summary
+}
