@@ -181,7 +181,8 @@ else
   || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-01.tigerlead.local' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-ddc-01.tigerlead.local' ] \
-  || [ $HOSTNAME == 'jlewis' ]; then
+  || [ $HOSTNAME == 'jlewis' ] \
+  || [ $HOSTNAME == 'jlewis-docker-host' ]; then
     HN="\[${MAGENTA}\]\h"
   elif [ $HOSTNAME == 'jd-local-vm' ] \
     || [ $HOSTNAME == 'jd-local-vm.local' ] \
