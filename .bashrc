@@ -187,6 +187,9 @@ fi
 alias ':q'='echo "Don''t quit now!"'
 alias ':qa'=':q'
 
+# Unmap ctrl+s from freezing the terminal.
+stty -ixon
+
 if [ -f "$HOME/.bash_proprietary_post" ]; then
     source $HOME/.bash_proprietary_post
 fi
