@@ -43,10 +43,10 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+# bindsym $mod+h focus left
+# bindsym $mod+j focus down
+# bindsym $mod+k focus up
+# bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left  focus left
@@ -55,10 +55,10 @@ bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+# bindsym $mod+Shift+h move left
+# bindsym $mod+Shift+j move down
+# bindsym $mod+Shift+k move up
+# bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left  move left
@@ -133,7 +133,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -175,12 +175,12 @@ bar {
         # sudo snap install slack --classic
         # sudo snap install spotify
         # sudo snap install --classic intellij-idea-ultimate
-        # sudo apt-get install playerctl
+        # sudo apt-get install playerctl  # might need to manually build/install this
         # sudo apt-get install feh  # to set wallpaper
-        # sudo apt-get install arandr  # to generate multiple monitor config(s)
-        # sudo apt-get install font-awesome
+        # sudo apt-get install arandr  # to generate multiple monitor config(s), might already be installed
+        # sudo apt-get install fonts-font-awesome
 # lock screen
-bindsym $mod+Shift+x exec i3lock -i ~/Pictures/lock-screen.png
+bindsym $mod+Shift+l exec i3lock -i ~/Pictures/lock-screen.png
 
 # default workspaces for certain applications.
 for_window [class="Spotify"] move to workspace $workspace8
