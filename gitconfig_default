@@ -10,3 +10,6 @@
 	whitespace = nowarn
 [core]
 	excludesfile = ${CODE_BASE}/global_git_ignore # Replace "${CODE_BASE}" with actual path; vars in .gitconfig aren't processed.
+[user]
+	email = ${EMAIL} # Replace ${EMAIL}
+	name = JD Lewis
