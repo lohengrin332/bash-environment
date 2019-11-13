@@ -14,5 +14,5 @@
     git subtree pull --squash --prefix=.vim/bundle/syntastic             https://github.com/vim-syntastic/syntastic.git         master
     git subtree pull --squash --prefix=.vim/bundle/vim-sleuth            https://github.com/tpope/vim-sleuth.git                master
     git subtree pull --squash --prefix=.vim/bundle/nerdtree              https://github.com/scrooloose/nerdtree.git             master
-    git subtree pull --squash --prefix=.vim/bundle/vdebug                https://github.com/joonty/vdebug.git                   master
+    # git subtree pull --squash --prefix=.vim/bundle/vdebug                https://github.com/joonty/vdebug.git                   master
     git subtree pull --squash --prefix=.vim/bundle/vim-indent-guides     https://github.com/nathanaelkane/vim-indent-guides.git master
