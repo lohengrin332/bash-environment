@@ -272,7 +272,3 @@ exec spotify
 exec slack
 # network configuration
 exec --no-startup-id nm-applet
-# kill off default notification daemon
-exec --no-startup-id pkill xfce4-notifyd
-# my preferred notification daemon
-exec --no-startup-id dunst -config ~/.i3/dunstrc
