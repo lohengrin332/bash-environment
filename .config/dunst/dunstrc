@@ -232,17 +232,17 @@ timeout = 0
 [melanie_hangouts]
     appname = "Google Chrome"
     summary = "*Melanie Lewis*"
-    timeout = 0
+    timeout = 1600
 
 [melanie_texts]
     appname = "Google Chrome"
     summary = "*5*5351*"
-    timeout = 0
+    timeout = 1600
 
 [slack]
     appname = "Slack"
     summary = "*indeed*"
-    timeout = 0
+    timeout = 100
 
 [test]
     appname = "notify-send"
