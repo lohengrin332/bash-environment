@@ -50,6 +50,24 @@ dbi_trace_off() {
     unset DBI_TRACE
 }
 
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
 alias cd='cd_func'
 cd_func() {
   if [ -z "$*" ]; then
@@ -59,6 +77,7 @@ cd_func() {
   else
     pushd "$*" > /dev/null
   fi
+  load-nvmrc
 }
 alias bd='bd_func'
 bd_func() { popd $* > /dev/null; }
@@ -85,6 +104,7 @@ vim_xml() {
 if [ `which tmux 2>/dev/null` ]; then
   alias myscreen='echo WTF?!? Use \"tmux\"!!! #'
   alias mytmux='_tmux_func'
+  alias _run_in_pip_window=$CODE_BASE/scripts/pip-command.sh
 fi
 alias myscreen='screen_func'
 
@@ -193,3 +213,5 @@ stty -ixon
 if [ -f "$HOME/.bash_proprietary_post" ]; then
     source $HOME/.bash_proprietary_post
 fi
+
+alias _intellij='/snap/bin/intellij-idea-ultimate &>/dev/null &'

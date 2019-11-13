@@ -18,3 +18,8 @@ set showmatch
 
 " enable syntax highlighting
 syntax on
+
+source ~/.vimrc
+
+nnoremap <C-h>     :action PreviousTab<CR>
+nnoremap <C-l>     :action NextTab<CR>
