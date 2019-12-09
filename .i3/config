@@ -239,6 +239,12 @@ for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace
 # %%hotkey: open the calculator app %%
 bindsym $mod+c exec /usr/bin/gnome-calculator
 
+# %%hotkey: pause notifications %%
+bindsym $mod+n exec notify-send "Pausing notifications"; exec sleep 5 && notify-send "DUNST_COMMAND_PAUSE"
+
+# %%hotkey: resume notifications %%
+bindsym $mod+shift+n exec notify-send "DUNST_COMMAND_RESUME"; exec notify-send "Resuming notifications"
+
 # Media Player Controls
 # None of this actually works right now.
 # %%hotkey: media player pause/play %%
