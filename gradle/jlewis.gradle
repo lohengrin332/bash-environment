@@ -1,0 +1,35 @@
+class NotifySendListener extends BuildAdapter {
+    void buildFinished(BuildResult result) {
+        String tag = "<b>${result.getGradle().getStartParameter().getCurrentDir().getName()}</b>:\n"
+        if (result.failure) {
+            notifySend(
+                "Gradle build failure",
+                tag + result.failure.message
+            )
+        } else {
+            notifySend(
+                "Gradle build finished",
+                tag + result.getGradle().getStartParameter().getTaskNames().join('\n')
+            )
+        }
+    }
+
+    void notifySend(title, message = 'No message', sticky = true) {
+        def cmd = [
+            '/usr/bin/notify-send',
+            title,
+            message,
+            '-c',
+            'gradle',
+            '-i',
+            '/usr/share/pixmaps/debian-logo.png'
+        ]
+        if (sticky) {
+            cmd << '-t' << '0'
+        }
+        cmd.execute()
+    }
+}
+
+def listener = new NotifySendListener()
+gradle.addBuildListener listener
