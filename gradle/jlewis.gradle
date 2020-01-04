@@ -4,7 +4,8 @@ class NotifySendListener extends BuildAdapter {
         if (result.failure) {
             notifySend(
                 "Gradle build failure",
-                tag + result.failure.message
+                tag + result.failure.message,
+                '/usr/share/icons/elementary-xfce/actions/48/gtk-delete.png'
             )
         } else {
             notifySend(
@@ -14,7 +15,7 @@ class NotifySendListener extends BuildAdapter {
         }
     }
 
-    void notifySend(title, message = 'No message', sticky = true) {
+    void notifySend(title, message = 'No message', icon = '/usr/share/icons/elementary-xfce/actions/48/gnome-run.png', sticky = true) {
         def cmd = [
             '/usr/bin/notify-send',
             title,
@@ -22,7 +23,7 @@ class NotifySendListener extends BuildAdapter {
             '-c',
             'gradle',
             '-i',
-            '/usr/share/pixmaps/debian-logo.png'
+            icon
         ]
         if (sticky) {
             cmd << '-t' << '0'
