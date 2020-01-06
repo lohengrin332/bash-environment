@@ -22,7 +22,7 @@ class NotifySendListener extends BuildAdapter {
             title,
             message,
             '-c',
-            'gradle',
+            'gradle,build_job',
             '-i',
             icon
         ]

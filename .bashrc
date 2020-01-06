@@ -101,6 +101,11 @@ vim_xml() {
   xmllint --format "$1" | vim -R -
 }
 
+alias _notify='notify_func'
+notify_func() {
+  /usr/bin/notify-send -c other_job,build_job "JOB COMPLETE" "pwd: ${PWD##*/}"
+}
+
 if [ `which tmux 2>/dev/null` ]; then
   alias myscreen='echo WTF?!? Use \"tmux\"!!! #'
   alias mytmux='_tmux_func'

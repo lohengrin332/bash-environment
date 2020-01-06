@@ -239,9 +239,9 @@ timeout = 0
     summary = "*5*5351*"
     timeout = 1800
 
-[gradle_builds]
+[build_job]
     appname = "notify-send"
-    category = "gradle"
+    category = "*build_job*"
     frame_color = "#FFFFFF"
     foreground = "#FFFFFF"
     background = "#333333"
