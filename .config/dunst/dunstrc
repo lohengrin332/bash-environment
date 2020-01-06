@@ -252,6 +252,10 @@ timeout = 0
     summary = "*indeed*"
     timeout = 120
 
+[spotify]
+    appname = "Spotify"
+    timeout = 8
+
 [test]
     appname = "notify-send"
     summary = "JD_TEST"
