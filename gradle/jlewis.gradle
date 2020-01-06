@@ -1,3 +1,4 @@
+// Adapted from a similar solution for Windows by https://twitter.com/mrhaki, found here: https://mrhaki.blogspot.com/2009/11/gradle-goodness-get-notified-about.html
 class NotifySendListener extends BuildAdapter {
     void buildFinished(BuildResult result) {
         String tag = "<b>${result.getGradle().getStartParameter().getCurrentDir().getName()}</b>:\n"
