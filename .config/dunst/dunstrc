@@ -231,7 +231,7 @@ timeout = 0
 
 [melanie_hangouts]
     appname = "Google Chrome"
-    summary = "*Melanie Lewis*"
+    summary = "*Melanie L*"
     timeout = 1800
 
 [melanie_texts]
