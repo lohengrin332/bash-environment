@@ -101,7 +101,7 @@ vim_xml() {
   xmllint --format "$1" | vim -R -
 }
 
-alias _notify='notify_func'
+alias _notify_for_job='notify_func'
 notify_func() {
   /usr/bin/notify-send -c other_job,build_job "JOB COMPLETE" "pwd: ${PWD##*/}"
 }
