@@ -184,6 +184,7 @@ bar {
         # sudo apt-get install fonts-font-awesome
         # sudo apt-get install exuberant-ctags
         # sudo apt-get install network-manager-gnome
+        # Install pasystray from https://github.com/christophgysin/pasystray.git
 # disable touchpad while typing
 exec --no-startup-id syndaemon -K -i 0.5 -R -d
 
@@ -245,27 +246,60 @@ bindsym $mod+n exec notify-send "Pausing notifications"; exec sleep 5 && notify-
 # %%hotkey: resume notifications %%
 bindsym $mod+shift+n exec notify-send "DUNST_COMMAND_RESUME"; exec notify-send "Resuming notifications"
 
+set $audio_out "alsa_output.pci-0000_00_1f.3.analog-stereo"
+set $audio_in "alsa_input.pci-0000_00_1f.3.analog-stereo"
+
 # Media Player Controls
-# None of this actually works right now.
-# %%hotkey: media player pause/play %%
-# bindsym $mod+Shift+p exec playerctl play-pause
-# %%hotkey: media player pause/play %%
-bindsym XF86AudioPlay exec playerctl play-pause
+# For now, see current mute/volume status for the mic in `pavucontrol`
+mode "manage_audio" {
+        # %%hotkey: Pressing h in manage_audio mode will enter manage_headphone_audio mode. %%
+        bindsym h mode "manage_headphone_audio"
+        # %%hotkey: Pressing m in manage_audio mode will enter manage_mic_audio mode. %%
+        bindsym m mode "manage_mic_audio"
 
-# %%hotkey: media player volume up %%
-bindsym Pause exec --no-startup-id pactl set-sink-volume 0 +5%
-# %%hotkey: media player volume up %%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+        # %%hotkey: Pressing a in manage_audio mode will mute inputs and outputs. %%
+        bindsym a \
+                exec --no-startup-id pactl set-sink-mute $audio_out 1 ; \
+                exec --no-startup-id pactl set-source-mute $audio_in 1
 
-# %%hotkey: media player volume down %%
-bindsym Scroll_Lock exec --no-startup-id pactl set-sink-volume 0 -5%
-# %%hotkey: media player volume down %%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+        # %%hotkey: Pressing A (shift+a) in manage_audio mode will unmute inputs and outputs. %%
+        bindsym shift+a \
+                exec --no-startup-id pactl set-sink-mute $audio_out 0 ; \
+                exec --no-startup-id pactl set-source-mute $audio_in 0
 
-# %%hotkey: media player mute %%
-bindsym Print exec --no-startup-id /usr/bin/amixer set Master toggle
-# %%hotkey: media player mute %%
-bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer set Master toggle
+        # %%hotkey: Pressing v in manage_audio mode will open `pavucontrol`. %%
+        bindsym v \
+                mode "default" ; \
+                exec --no-startup-id /usr/bin/pavucontrol
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "manage_headphone_audio" {
+        # %%hotkey: Pressing + (shift+=) in manage_headphone_audio mode will raise system volume. %%
+        bindsym shift+equal exec --no-startup-id pactl set-sink-volume $audio_out "+1%"
+        # %%hotkey: Pressing - in manage_headphone_audio mode will lower system volume. %%
+        bindsym minus exec --no-startup-id pactl set-sink-volume $audio_out "-1%"
+        # %%hotkey: Pressing = in manage_headphone_audio mode will toggle output mute. %%
+        bindsym equal exec --no-startup-id pactl set-sink-mute $audio_out toggle
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "manage_mic_audio" {
+        # %%hotkey: Pressing + (shift+=) in manage_mic_audio mode will raise system volume. %%
+        bindsym shift+equal exec --no-startup-id pactl set-source-volume $audio_in "+1%"
+        # %%hotkey: Pressing - in manage_mic_audio mode will lower system volume. %%
+        bindsym minus exec --no-startup-id pactl set-source-volume $audio_in "-1%"
+        # %%hotkey: Pressing = in manage_mic_audio mode will toggle output mute. %%
+        bindsym equal exec --no-startup-id pactl set-source-mute $audio_in toggle
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# %%hotkey: manage system volume(s) %%
+bindsym $mod+shift+a mode "manage_audio"
 
 # %%hotkey: screen shot %%
 bindsym $mod+Print exec --no-startup-id /usr/bin/xfce4-screenshooter
@@ -279,3 +313,5 @@ exec spotify
 exec slack
 # network configuration
 exec --no-startup-id nm-applet
+# audio configuration
+exec --no-startup-id pasystray
