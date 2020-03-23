@@ -184,7 +184,7 @@ bar {
         # sudo apt-get install fonts-font-awesome
         # sudo apt-get install exuberant-ctags
         # sudo apt-get install network-manager-gnome
-        # Install pasystray from https://github.com/christophgysin/pasystray.git
+        # Install pasystray from https://github.com/christophgysin/pasystray
 # disable touchpad while typing
 exec --no-startup-id syndaemon -K -i 0.5 -R -d
 
