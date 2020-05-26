@@ -177,6 +177,7 @@ bar {
 # Prereqs:
         # sudo snap install slack --classic
         # sudo snap install spotify
+        # sudo snap install pocket-casts
         # sudo snap install --classic intellij-idea-ultimate
         # sudo apt-get install playerctl  # might need to manually build/install this
         # sudo apt-get install feh  # to set wallpaper
@@ -230,9 +231,11 @@ exec --no-startup-id xautolock -time 20 -locker "~/code/bash-env/scripts/i3lock.
 
 # default workspaces for certain applications.
 for_window [class="Spotify"] move to workspace $workspace8
+for_window [class="Google-chrome" title="Podcast Web Player "] move to workspace $workspace8
+for_window [class="pocket-casts" title="Podcast Web Player "] move to workspace $workspace8
 assign [class="Slack"] $workspace9
 for_window [class="Google-chrome" instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] move to workspace $workspace9
-assign [class="jetbrains-idea"] $workspace7
+# assign [class="jetbrains-idea"] $workspace7
 assign [class="zoom"] $workspace3
 for_window [class="jetbrains-idea" title="Comparison Failure "] move to workspace $workspace1
 for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace $workspace1
