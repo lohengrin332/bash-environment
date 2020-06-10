@@ -197,6 +197,15 @@ bar {
 # disable touchpad while typing
 exec --no-startup-id syndaemon -K -i 0.5 -R -d
 
+# %%hotkey: mark the current window as the sidebar application %%
+bindsym $mod+b mark sidebar
+
+# %%hotkey: move sidebar window to scratchpad %%
+bindsym $mod+Shift+apostrophe exec "i3-msg '[con_mark=sidebar] move scratchpad'"
+
+# %%hotkey: show the first scratchpad window
+bindsym $mod+apostrophe exec "i3-msg '[con_mark=sidebar] scratchpad show; [con_mark=sidebar] floating disable; [con_mark=sidebar] move container to workspace current; [con_mark=sidebar] move right; [con_mark=sidebar] resize shrink width 10px; [con_mark=sidebar] resize shrink width 10px; [con_mark=sidebar] resize shrink width 10px'"
+
 # %%hotkey: toggle current window to/from PIP mode %%
 bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 500px; resize shrink height 10000px; resize grow height 250px;move position 10px 10px;'"
 
