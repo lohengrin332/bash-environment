@@ -147,15 +147,23 @@ bindsym $mod+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do 
 mode "resize" {
         # %%hotkey: Pressing left in resize mode will shrink the window’s width. %%
         bindsym Left resize shrink width 10 px or 10 ppt
+        # %%hotkey: Pressing shift+left in resize mode will shrink the window’s width a small amount. %%
+        bindsym Shift+Left resize shrink width 1 px or 1 ppt
 
-        # %%hotkey: Pressing right in resize mode will grow the window’s width. %%
+        # %%hotkey: Pressing down in resize mode will grow the window’s height. %%
         bindsym Down resize grow height 10 px or 10 ppt
+        # %%hotkey: Pressing shift+down in resize mode will grow the window’s height a small amount. %%
+        bindsym Shift+Down resize grow height 1 px or 1 ppt
 
         # %%hotkey: Pressing up in resize mode will shrink the window’s height. %%
         bindsym Up resize shrink height 10 px or 10 ppt
+        # %%hotkey: Pressing shift+up in resize mode will shrink the window’s height a small amount. %%
+        bindsym Shift+Up resize shrink width 1 px or 1 ppt
 
-        # %%hotkey: Pressing down in resize mode will grow the window’s height. %%
+        # %%hotkey: Pressing right in resize mode will grow the window’s height. %%
         bindsym Right resize grow width 10 px or 10 ppt
+        # %%hotkey: Pressing shift+right in resize mode will grow the window’s height a small amount. %%
+        bindsym Shift+Right resize grow width 1 px or 1 ppt
 
         # %%hotkey: pressing Enter or Escape in resize mode will return to normal mode %%
         bindsym Return mode "default"
@@ -230,6 +238,7 @@ bindsym $mod+l exec ~/code/bash-env/scripts/i3lock.sh
 exec --no-startup-id xautolock -time 20 -locker "~/code/bash-env/scripts/i3lock.sh"
 
 # default workspaces for certain applications.
+# Use `xprop` to identify window information.
 for_window [class="Spotify"] move to workspace $workspace8
 for_window [class="Google-chrome" title="Podcast Web Player "] move to workspace $workspace8
 for_window [class="pocket-casts" title="Podcast Web Player "] move to workspace $workspace8
