@@ -13,3 +13,5 @@
 [user]
 	email = ${EMAIL} # Replace ${EMAIL}
 	name = JD Lewis
+[pull]
+	ff = only
