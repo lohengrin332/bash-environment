@@ -5,7 +5,7 @@ fi
 export PIP_WIDTH=500
 export PIP_HEIGHT=250
 export PIP_INSET=10
-export PIP_OVERLAY=75
+export PIP_OVERLAY=282 # Minimum width of a terminal, found using `xprop | grep minimum`
 
 TOTAL_WIDTH=$(xdpyinfo | awk '/dimensions/{print $2}' | sed 's/x[0-9]\+$//')
 RIGHT_MAX=$(expr $TOTAL_WIDTH - $PIP_WIDTH - $PIP_OVERLAY)
