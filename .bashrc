@@ -103,7 +103,11 @@ vim_xml() {
 
 alias _notify_for_job='notify_func'
 notify_func() {
-  /usr/bin/notify-send -c other_job,build_job "JOB COMPLETE" "pwd: ${PWD##*/}"
+  MESSAGE="pwd: ${PWD##*/}"
+  if [ ! -z "$1" ]; then
+    MESSAGE="${MESSAGE}\n\n$1"
+  fi
+  /usr/bin/notify-send -c other_job,build_job "JOB COMPLETE" "${MESSAGE}"
 }
 
 if [ `which tmux 2>/dev/null` ]; then

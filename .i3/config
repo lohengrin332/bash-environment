@@ -110,9 +110,10 @@ set $workspace6 "6"
 set $workspace7 "7 IntelliJ"
 set $workspace8 "8 "
 set $workspace9 "9 "
+set $workspaceG "🎮"
 
 # %%hotkey: switch to workspace 0-9 %%
-# $mod+{0,1,2,3,4,5,6,7,8,9}
+# $mod+{0,1,2,3,4,5,6,7,8,9,g}
 bindsym $mod+0 workspace $workspace0
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -123,6 +124,7 @@ bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
+bindsym $mod+g workspace $workspaceg
 
 # %%hotkey: move focused container to workspace 0-9 %%
 # $mod+Shift+{0,1,2,3,4,5,6,7,8,9}
@@ -136,6 +138,7 @@ bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+g move container to workspace $workspaceg
 
 # %%hotkey: reload the configuration file %%
 bindsym $mod+Shift+c reload
@@ -234,6 +237,7 @@ mode "relocate_pip" {
         bindsym 7 move container to workspace $workspace7; [con_mark="pip"] focus
         bindsym 8 move container to workspace $workspace8; [con_mark="pip"] focus
         bindsym 9 move container to workspace $workspace9; [con_mark="pip"] focus
+        bindsym g move container to workspace $workspaceg; [con_mark="pip"] focus
 
         bindsym Return mode "default"
         bindsym Escape mode "default"

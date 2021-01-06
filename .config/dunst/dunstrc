@@ -229,12 +229,22 @@ timeout = 0
     timeout = 0
     urgency = critical
 
+[melanie_messages]
+    appname = "Android Messages"
+    summary = "*Melanie L*"
+    timeout = 1800
+
+[melanie_messages_texts]
+    appname = "Android Messages"
+    summary = "*5*5351*"
+    timeout = 1800
+
 [melanie_hangouts]
     appname = "Google Chrome"
     summary = "*Melanie L*"
     timeout = 1800
 
-[melanie_texts]
+[melanie_hangouts_texts]
     appname = "Google Chrome"
     summary = "*5*5351*"
     timeout = 1800
