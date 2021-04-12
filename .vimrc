@@ -19,7 +19,7 @@ endif
 set autoindent
 
 " highlight indentation levels in alternating colors
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 map gti :IndentGuidesToggle<CR>
 
 

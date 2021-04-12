@@ -72,8 +72,11 @@ bindsym $mod+f fullscreen toggle
 
 # %%hotkey: change container layout (stacked, tabbed, toggle split) %%
 # $mod+{s,w,e}
+# %%hotkey: change to split container layout %%
 bindsym $mod+e layout toggle split
+# %%hotkey: change to stacking container layout %%
 bindsym $mod+s layout stacking
+# %%hotkey: change to tabbed container layout %%
 bindsym $mod+w layout tabbed
 
 # %%hotkey: toggle tiling / floating %%

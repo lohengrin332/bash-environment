@@ -77,7 +77,6 @@ cd_func() {
   else
     pushd "$*" > /dev/null
   fi
-  load-nvmrc
 }
 alias bd='bd_func'
 bd_func() { popd $* > /dev/null; }
