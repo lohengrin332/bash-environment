@@ -11,6 +11,10 @@ if [ -f "$HOME/.bash_proprietary" ]; then
   source $HOME/.bash_proprietary
 fi
 
+if [ -z "${MACHINE_TAG}" ]; then
+  export MACHINE_TAG=${HOSTNAME}
+fi
+
 if [ ! -d "$CODE_BASE" ]; then
   export CODE_BASE=$HOME/code/bash-env
 fi
@@ -106,8 +110,13 @@ notify_func() {
   if [ ! -z "$1" ]; then
     MESSAGE="${MESSAGE}\n\n$1"
   fi
-  /usr/bin/notify-send -c other_job,build_job "JOB COMPLETE" "${MESSAGE}"
+  /usr/bin/notify-send -c other_job,build_job,${MACHINE_TAG} "JOB COMPLETE" "${MESSAGE}"
 }
+
+# alias _sf_harness='sf_harness_func'
+# sf_harness_func() {
+# 
+# }
 
 if [ `which tmux 2>/dev/null` ]; then
   alias myscreen='echo WTF?!? Use \"tmux\"!!! #'

@@ -26,6 +26,14 @@ font pango:monospace 12
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+# Set outline color for tab on unfocused window
+# class                     border   backgr. text    indic.  child_border
+#client.focused              #4c7899 #285577 #ffffff #2e9ef4 #285577
+client.focused              #222222 #285577 #ffffff #2e9ef4 #285577
+#client.focused_inactive     #333333 #5f676a #ffffff #484e50 #5f676a
+#client.unfocused            #333333 #222222 #888888 #292d2e #222222
+client.unfocused            #666666 #222222 #888888 #292d2e #222222
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
