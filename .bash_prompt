@@ -181,9 +181,14 @@ else
   || [ $HOSTNAME == 'dlewis-vz-dev-pdc-01.tigerlead.local' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-01.tigerlead.local' ] \
   || [ $HOSTNAME == 'dlewis-vz-dev-ddc-01.tigerlead.local' ] \
-  || [ $HOSTNAME == 'jlewis' ] \
   || [ $HOSTNAME == 'jlewis-docker-host' ]; then
     HN="\[${MAGENTA}\]\h"
+  elif [ $HOSTNAME == 'jlewis' ]; then
+    if [ $MACHINE_TAG == 'jlewis-vm' ]; then
+      HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h-VM"
+    else
+      HN="\[${MAGENTA}\]\h"
+    fi
   elif [ $HOSTNAME == 'jd-local-vm' ] \
     || [ $HOSTNAME == 'jd-local-vm.local' ] \
     || [ $HOSTNAME == 'i-124615' ]; then
