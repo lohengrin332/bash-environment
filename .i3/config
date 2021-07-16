@@ -201,6 +201,8 @@ bar {
         # sudo snap install spotify
         # sudo snap install pocket-casts
         # sudo snap install --classic intellij-idea-ultimate
+        # sudo snap install --edge android-messages-desktop
+        # sudo apt-get install i3
         # sudo apt-get install playerctl  # might need to manually build/install this
         # sudo apt-get install feh  # to set wallpaper
         # sudo apt-get install arandr  # to generate multiple monitor config(s), might already be installed
