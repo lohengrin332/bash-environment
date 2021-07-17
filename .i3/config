@@ -208,7 +208,8 @@ bar {
         # sudo apt-get install arandr  # to generate multiple monitor config(s), might already be installed
         # sudo apt-get install fonts-font-awesome
         # sudo apt-get install exuberant-ctags
-        # sudo apt-get install network-manager-gnome
+        # sudo apt-get install network-manager-gnome  # Not totally sure this one is necessary
+        # sudo apt-get install blueman-applet
         # Install pasystray from https://github.com/christophgysin/pasystray
 # disable touchpad while typing
 exec --no-startup-id syndaemon -K -i 0.5 -R -d
@@ -226,7 +227,7 @@ bindsym $mod+apostrophe exec "i3-msg '[con_mark=sidebar] floating enable; [con_m
 bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 500px; resize shrink height 10000px; resize grow height 250px;move position 10px 10px;'"
 
 # %%hotkey: new console in PIP mode %%
-bindsym $mod+Shift+p exec gnome-terminal -e "/home/jlewis/code/bash-env/scripts/i3pip-console.sh" # --zoom 0.7
+bindsym $mod+Shift+p exec gnome-terminal -e "~/code/bash-env/scripts/i3pip-console.sh" # --zoom 0.7
 mode "relocate_pip" {
         bindsym Left move left 20px
         bindsym Shift+Left move left 200px
