@@ -19,6 +19,9 @@ if [ ! -d "$CODE_BASE" ]; then
   export CODE_BASE=$HOME/code/bash-env
 fi
 
+# Save the code_base path so it can be accessed in the i3 configuration.
+echo $CODE_BASE > ~/.code_base_path
+
 export INPUTRC="$CODE_BASE/.inputrc"
 
 if [ -f $HOME/.git-completion.bash ]; then
