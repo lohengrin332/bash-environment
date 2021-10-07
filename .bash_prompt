@@ -193,7 +193,8 @@ else
     || [ $HOSTNAME == 'jd-local-vm.local' ] \
     || [ $HOSTNAME == 'i-124615' ]; then
     HN="\[${BLACK}\]\[${LTBLUE_HILITE}\]\h"
-  elif [ $HOSTNAME == 'rpi-mdl-00' ]; then
+  elif [ $HOSTNAME == 'rpi-mdl-00' ] \
+    || [ $HOSTNAME == 'rpi-jdl-00' ]; then
     HN="\[${BLACK}\]\[${YELLOW_HILITE}\]\h"
   else
     HN="\h"
