@@ -19,6 +19,8 @@ if [ ! -d "$CODE_BASE" ]; then
   export CODE_BASE=$HOME/code/bash-env
 fi
 
+export PATH=$PATH:${CODE_BASE}/bin
+
 # Save the code_base path so it can be accessed in the i3 configuration.
 echo $CODE_BASE > ~/.code_base_path
 
@@ -126,8 +128,6 @@ notify_func() {
   fi
   /usr/bin/notify-send -c other_job,build_job,${MACHINE_TAG} "JOB COMPLETE" "${MESSAGE}"
 }
-
-alias _restart_notifications='kill `pidof dunst` ; _notify_for_job'
 
 # alias _sf_harness='sf_harness_func'
 # sf_harness_func() {
@@ -247,5 +247,5 @@ if [ -f "$HOME/.bash_proprietary_post" ]; then
     source $HOME/.bash_proprietary_post
 fi
 
-alias _ps_mem='free && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n20'
+alias _ps_mem='free -m && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n20'
 alias _ps_cpu='uptime && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n20'
