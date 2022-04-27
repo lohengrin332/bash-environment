@@ -199,6 +199,6 @@ else
   else
     HN="\h"
   fi
-  export PS1="\[${GREEN}\]\u@${HN}\[${RESET}\]\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h:\W\007\]"
+  export PS1="\[${GREEN}\]\u@${HN}\[${RESET}\]\[${YELLOW}\]:\[${WHITE}\]\$(parse_git_branch)\$(parse_git_dirty)\[${RESET}\]\[${YELLOW}\]:\w\[${RESET}\]\n\$ \[\033]0;\h\007\]"
 
 fi

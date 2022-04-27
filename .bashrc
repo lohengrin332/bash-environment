@@ -153,6 +153,18 @@ _tmux_func() {
   fi
 }
 
+REAL_GRADLE=`which gradle`
+alias gradle='_gradle_func'
+_gradle_func() {
+  if [ -e ./gradlew ]; then
+    echo "./gradlew $@"
+    ./gradlew -I $CODE_BASE/gradle/jlewis.gradle $@
+  else
+    echo "$REAL_GRADLE $@"
+    $REAL_GRADLE $@
+  fi
+}
+
 screen_func() {
   SCREEN_NAME='main'
   if [ "$1" ]; then
@@ -247,5 +259,9 @@ if [ -f "$HOME/.bash_proprietary_post" ]; then
     source $HOME/.bash_proprietary_post
 fi
 
-alias _ps_mem='free -m && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n20'
-alias _ps_cpu='uptime && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n20'
+PS_MEM='free -m && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n20'
+alias _ps_mem=$PS_MEM
+alias _watch_ps_mem="watch -n1 '$PS_MEM'"
+PS_CPU='uptime && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n20'
+alias _ps_cpu=$PS_CPU
+alias _watch_ps_cpu="watch -n1 '$PS_CPU'"

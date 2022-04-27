@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-set $CODE_BASE ~/code/bash-env
+set $CODE_BASE /home/jlewis/code/bash-env
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -213,9 +213,20 @@ bar {
         # sudo apt-get install network-manager-gnome  # Not totally sure this one is necessary
         # sudo apt-get install blueman-applet
         # sudo apt-get install gnome-calculator
+        # sudo apt-get install xfce4-screenshooter
         # Install pasystray from https://github.com/christophgysin/pasystray
 # disable touchpad while typing
 exec --no-startup-id syndaemon -K -i 0.5 -R -d
+
+## Dunst notification controls
+# %%hotkey: dunst: dismiss a system message %%
+bindsym Control+space exec dunstctl close
+# %%hotkey: dunst: dismiss all system messages %%
+bindsym Control+Shift+space exec dunstctl close-all
+# %%hotkey: dunst: show most recent dismissed system message %%
+bindsym Control+grave exec dunstctl history-pop
+# %%hotkey: dunst: dunst: show system message context menu %%
+bindsym Control+Shift+period exec dunstctl context
 
 # %%hotkey: mark the current window as the sidebar application %%
 bindsym $mod+b mark sidebar
@@ -230,7 +241,7 @@ bindsym $mod+apostrophe exec "i3-msg '[con_mark=sidebar] floating enable; [con_m
 bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 500px; resize shrink height 10000px; resize grow height 250px;move position 10px 10px;'"
 
 # %%hotkey: new console in PIP mode %%
-bindsym $mod+Shift+p exec gnome-terminal -e "~/code/bash-env/scripts/i3pip-console.sh" # --zoom 0.7
+bindsym $mod+Shift+p exec gnome-terminal -e "$CODE_BASE/scripts/i3pip-console.sh" # --zoom 0.7
 mode "relocate_pip" {
         bindsym Left move left 20px
         bindsym Shift+Left move left 200px
@@ -349,7 +360,7 @@ bindsym $mod+Print exec --no-startup-id /usr/bin/xfce4-screenshooter
 
 ## start applications by default
 # Set the background wallpaper
-exec_always /usr/bin/feh --bg-scale ~/Pictures/wallpaper.png
+exec_always /usr/bin/feh --bg-scale ~/Pictures/wallpaper.jpg
 # music
 exec spotify
 # chat/im

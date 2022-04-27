@@ -5,4 +5,8 @@ if [ "$#" != "0" ] && [ "$1" == "-n" ]; then
 fi
 
 /bin/sleep 5
-/usr/bin/notify-send "DUNST_COMMAND_PAUSE"
+if [ -e /usr/local/bin/dunstctl ]; then
+    /usr/local/bin/dunstctl set-paused true
+else
+    /usr/bin/notify-send "DUNST_COMMAND_PAUSE"
+fi
