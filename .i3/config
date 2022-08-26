@@ -360,7 +360,7 @@ bindsym $mod+Print exec --no-startup-id /usr/bin/xfce4-screenshooter
 
 ## start applications by default
 # Set the background wallpaper
-exec_always /usr/bin/feh --bg-scale ~/Pictures/wallpaper.jpg
+exec_always /usr/bin/feh --bg-fill ~/Pictures/wallpaper.jpg
 # music
 exec spotify
 # chat/im
