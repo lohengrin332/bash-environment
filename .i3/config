@@ -230,6 +230,8 @@ bindsym Control+Shift+period exec dunstctl context
 
 # %%hotkey: mark the current window as the sidebar application %%
 bindsym $mod+b mark sidebar
+# %%hotkey: unmark the current window as the sidebar application %%
+bindsym $mod+Shift+b unmark sidebar
 
 # %%hotkey: move sidebar window to scratchpad %%
 bindsym $mod+Shift+apostrophe exec "i3-msg '[con_mark=sidebar] move scratchpad'"
@@ -287,7 +289,7 @@ assign [class="Slack"] $workspace9
 for_window [class="Google-chrome" title="Google Hangouts"] move to workspace $workspace9
 # assign [class="jetbrains-idea"] $workspace7
 assign [class="zoom"] $workspace3
-for_window [class="jetbrains-idea" title="Comparison Failure "] move to workspace $workspace1
+# for_window [class="jetbrains-idea" title="Comparison Failure "] move to workspace $workspace1
 for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace $workspace1
 for_window [class="Gnome-calculator"] floating enable move position center
 
