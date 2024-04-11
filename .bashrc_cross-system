@@ -1,0 +1,269 @@
+# .bashrc_cross-system
+
+export CDPATH=".:$HOME/code:$CDPATH"
+
+if [ -f "$HOME/.bash_proprietary" ]; then
+  source $HOME/.bash_proprietary
+fi
+
+if [ -z "${MACHINE_TAG}" ]; then
+  export MACHINE_TAG=${HOSTNAME}
+fi
+
+if [ ! -d "$CODE_BASE" ]; then
+  export CODE_BASE=$HOME/code/bash-env
+fi
+
+export PATH=$PATH:${CODE_BASE}/bin
+
+# Save the code_base path so it can be accessed in the i3 configuration.
+echo $CODE_BASE > ~/.code_base_path
+
+export INPUTRC="$CODE_BASE/.inputrc"
+
+if [ -f $HOME/.git-completion.bash ]; then
+  . $HOME/.git-completion.bash
+fi
+
+if [ -f $CODE_BASE/git ]; then
+  . $CODE_BASE/git
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# User specific aliases and functions
+
+# Commented out in favor of using "set editing-mode vi" in .inputrc
+#set -o vi
+
+alias _dbic_trace='dbic_trace_on'
+dbic_trace_on() {
+    export DBIC_TRACE=1
+    export DBIC_TRACE_PROFILE=console
+}
+alias _no_dbic_trace='dbic_trace_off'
+dbic_trace_off() {
+    unset DBIC_TRACE
+    unset DBIC_TRACE_PROFILE
+}
+
+alias _dbi_trace='dbi_trace_on'
+dbi_trace_on() {
+    export DBI_TRACE=SQL
+}
+alias _no_dbi_trace='dbi_trace_off'
+dbi_trace_off() {
+    unset DBI_TRACE
+}
+
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+alias cd='cd_func'
+cd_func() {
+  if [ -z "$*" ]; then
+    pushd $HOME > /dev/null
+  elif [ $1 == '-' ]; then
+    popd > /dev/null
+  else
+    pushd "$*" > /dev/null
+  fi
+}
+alias bd='bd_func'
+bd_func() { popd $* > /dev/null; }
+
+if [ `which ack 2>/dev/null` ]; then
+    alias sgrep='echo "WTF?!? Use \"ack\"!!!" #'
+    alias psgrep='echo "WTF?!? Use \"ack --perl\"!!! (or "ack_perl")" #'
+    alias jsgrep='echo "WTF?!? Use \"ack --js --json --html\"!!! (or "ack_js")" #'
+    alias rsgrep='echo "WTF?!? Use \"ack --js --json --html\"!!! (or "ack_ruby")" #'
+    alias ack_perl='ack --perl'
+    alias ack_js='ack --js --json --html --tt'
+    alias ack_ruby='ack --ruby'
+else
+    alias sgrep='find ./ -type f -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+    alias psgrep='find ./ -type f "(" -iname \*.pl -or -iname \*.pm -or -iname \*.cgi ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+    alias jsgrep='find ./ -type f "(" -iname \*.html -or -iname \*.js -or -iname \*.json ")" -not -wholename \*svn\* -not -wholename \*git\*|sed "s/\(\s\)/\\\\\1/g"|xargs grep'
+fi
+
+alias xml='vim_xml'
+vim_xml() {
+  xmllint --format "$1" | vim -R -
+}
+
+alias _notify_for_job='notify_func'
+notify_func() {
+  MESSAGE="pwd: ${PWD##*/}"
+  if [ ! -z "$1" ]; then
+    MESSAGE="${MESSAGE}\n\n$1"
+  fi
+  /usr/bin/notify-send -c other_job,build_job,${MACHINE_TAG} "JOB COMPLETE" "${MESSAGE}"
+}
+
+# alias _sf_harness='sf_harness_func'
+# sf_harness_func() {
+# 
+# }
+
+if [ `which tmux 2>/dev/null` ]; then
+  alias myscreen='echo WTF?!? Use \"tmux\"!!! #'
+  alias mytmux='_tmux_func'
+  alias _run_in_pip_window=$CODE_BASE/scripts/pip-command.sh
+fi
+alias myscreen='screen_func'
+
+_tmux_func() {
+  SESSION_NAME=main
+  if [ "$1" ]; then
+    SESSION_NAME=$1
+  fi
+  if [ -z "$(tmux ls 2> /dev/null|grep $SESSION_NAME)" ]; then
+    tmux new -s $SESSION_NAME
+  else
+    tmux a -t $SESSION_NAME
+  fi
+}
+
+REAL_GRADLE=`which gradle`
+alias gradle='_gradle_func'
+_gradle_func() {
+  if [ -e ./gradlew ]; then
+    echo "./gradlew $@"
+    ./gradlew -I $CODE_BASE/gradle/jlewis.gradle $@
+  else
+    echo "$REAL_GRADLE $@"
+    $REAL_GRADLE $@
+  fi
+}
+
+screen_func() {
+  SCREEN_NAME='main'
+  if [ "$1" ]; then
+    SCREEN_NAME=$1
+  fi
+  TMP_FILE=/tmp/$$_$SCREEN_NAME\_screenrc.tmp
+  if [ -z "$(screen -ls|grep $SCREEN_NAME)" ]; then
+    cat $CODE_BASE/.screenrc > $TMP_FILE
+    cat $CODE_BASE/.screenrc_sessions >> $TMP_FILE
+    screen -c $TMP_FILE -S $SCREEN_NAME
+  else
+    screen -xS $SCREEN_NAME
+  fi
+}
+
+if [ -e /usr/bin/vim ]; then
+  export EDITOR='/usr/bin/vim'
+  export VISUAL='/usr/bin/vim'
+else
+  export EDITOR='/bin/vi'
+  export VISUAL='/bin/vi'
+fi
+
+if [ -e $CODE_BASE/.bash_prompt ]; then
+  . $CODE_BASE/.bash_prompt
+else
+  #export PS1="[\u@\h \W]\$ "
+  if [ $HOSTNAME == 'ln5dev-mbx-d-1.mindbrix.com' ] || [ $HOSTNAME == 'ln5test-mbx-d-1.mindbrix.com' ] ; then
+    export PS1='\[\e[31m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  else
+    export PS1='\[\e[32m\]\u@\h\[\e[33m\]:\w\[\e[0m\]\n\$ \[\033]0;\h:\W\007\]'
+  fi
+fi
+
+if [ -e $HOME/bin/charade.exe ]; then
+  SSHAGENT=$HOME/bin/charade
+  SSHAGENTARGS='-s'
+  if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+    eval `$SSHAGENT $SSHAGENTARGS`
+    trap "kill $SSH_AGENT_PID" 0
+    alias ssh='/usr/bin/ssh -A'
+  fi
+elif [ -e $CODE_BASE/bin/ssh-agentrc ]; then
+  source $CODE_BASE/bin/ssh-agentrc
+else
+  alias ssh='ssh -A'
+fi
+#alias ssh='ssh_func'
+#ssh_func() {
+#  export SSH_AUTH_SOCK=`$HOME/code/get_ssh_sock.pl`
+#  /usr/bin/ssh -A $*
+#}
+
+alias _eos_serial_console_4='screen /dev/ttyUSB0 115200'
+alias _eos_serial_console_10x='screen /dev/ttyUSB0 57600'
+
+alias svndiff=$CODE_BASE/bin/svndiff.pl
+alias gitdiff='git difftool'
+alias gitmerge='git mergetool'
+
+export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
+
+export PATH="$PATH:$HOME/bin"
+export GREP_COLOR='0;07'
+alias grep='grep --color=auto'
+
+dircolors_exe=/usr/bin/dircolors
+if [ ! -x "$dircolors_exe" ]; then
+    if [ -x /usr/local/bin/gdircolors ]; then
+        dircolors_exe=/usr/local/bin/gdircolors
+    fi
+fi
+if [ -e $CODE_BASE/dircolors.256dark ] && [ -x "$dircolors_exe" ]; then
+    ${dircolors_exe} $CODE_BASE/dircolors.256dark > /var/tmp/$USER.dircolors.bash
+    source /var/tmp/$USER.dircolors.bash
+else
+    export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:";
+fi
+
+if [ -x /usr/local/bin/gls ]; then
+    alias ls='/usr/local/bin/gls --color=auto'
+fi
+
+if [ -x /opt/local/bin/gfind ]; then
+    alias find='/opt/local/bin/gfind'
+fi
+
+alias ':q'='echo "Don''t quit now!"'
+alias ':qa'=':q'
+
+# If this is an interactive shell, unmap ctrl+s from freezing the terminal.
+[[ $- == *i* ]] && stty -ixon
+
+if [ -f "$HOME/.bash_proprietary_post" ]; then
+    source $HOME/.bash_proprietary_post
+fi
+
+PS_MEM='free -m && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n20'
+alias _ps_mem=$PS_MEM
+alias _watch_ps_mem="watch -n1 '$PS_MEM'"
+PS_CPU='uptime && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n20'
+alias _ps_cpu=$PS_CPU
+alias _watch_ps_cpu="watch -n1 '$PS_CPU'"
+
+if [ -f "$HOME/.indeed-kube-profile" ]; then
+  . "$HOME/.indeed-kube-profile"
+fi
