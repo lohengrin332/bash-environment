@@ -211,7 +211,7 @@ bar {
         # sudo apt-get install fonts-font-awesome
         # sudo apt-get install exuberant-ctags
         # sudo apt-get install network-manager-gnome  # Not totally sure this one is necessary
-        # sudo apt-get install blueman-applet
+        # sudo apt-get install {blueman-applet|blueman}
         # sudo apt-get install gnome-calculator
         # sudo apt-get install xfce4-screenshooter
         # Install pasystray from https://github.com/christophgysin/pasystray
