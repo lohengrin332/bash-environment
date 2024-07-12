@@ -1,3 +1,4 @@
+
 alias _fix_ssh_auth_sock='auth_sock_func'
 
 alias _rm_ssh_auth_socks="find /tmp -maxdepth 1 -type d -name ssh-\\* -user $USER -exec rm -rf {} \;"
@@ -12,3 +13,7 @@ alias ssh='ssh_func'
 ssh_func() {
     /usr/bin/ssh -A $*
 }
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    _fix_ssh_auth_sock
+fi
