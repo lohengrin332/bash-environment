@@ -1,18 +1,17 @@
-
-alias _fix_ssh_auth_sock='auth_sock_func'
-
-alias _rm_ssh_auth_socks="find /tmp -maxdepth 1 -type d -name ssh-\\* -user $USER -exec rm -rf {} \;"
-
 auth_sock_func() {
     export SSH_AUTH_SOCK=$($CODE_BASE/bin/get_ssh_sock.pl)
     ssh-add -l
 }
 
-alias ssh='ssh_func'
-
 ssh_func() {
     /usr/bin/ssh -A $*
 }
+
+alias _fix_ssh_auth_sock='auth_sock_func'
+
+alias _rm_ssh_auth_socks="find /tmp -maxdepth 1 -type d -name ssh-\\* -user $USER -exec rm -rf {} \;"
+
+alias ssh='ssh_func'
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
     _fix_ssh_auth_sock

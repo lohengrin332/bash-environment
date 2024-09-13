@@ -41,7 +41,7 @@ floating_modifier $mod
 
 # %%hotkey: show this help %%
 # $mod+/
-bindsym $mod+slash exec ~/code/bash-env/scripts/dmenu_hotkeys.py i3
+bindsym $mod+slash exec $CODE_BASE/scripts/dmenu_hotkeys.py i3
 
 # %%hotkey: start a terminal %%
 bindsym $mod+Return exec i3-sensible-terminal
@@ -215,8 +215,8 @@ bar {
         # sudo apt-get install gnome-calculator
         # sudo apt-get install xfce4-screenshooter
         # Install pasystray from https://github.com/christophgysin/pasystray
-# disable touchpad while typing
-exec --no-startup-id syndaemon -K -i 0.5 -R -d
+# disable touchpad while typing if using synaptics
+# exec --no-startup-id syndaemon -K -i 0.5 -R -d
 
 ## Dunst notification controls
 # %%hotkey: dunst: dismiss a system message %%
@@ -276,9 +276,9 @@ mode "relocate_pip" {
 bindsym $mod+Control+p [con_mark="pip"] focus; mode "relocate_pip";
 
 # %%hotkey: lock screen with keystroke %%
-bindsym $mod+l exec ~/code/bash-env/scripts/i3lock.sh
+bindsym $mod+l exec $CODE_BASE/scripts/i3lock.sh
 # lock screen automatically after 20 minutes
-exec --no-startup-id xautolock -time 20 -locker "~/code/bash-env/scripts/i3lock.sh"
+exec --no-startup-id xautolock -time 20 -locker "$CODE_BASE/scripts/i3lock.sh"
 
 # default workspaces for certain applications.
 # Use `xprop` to identify window information.
