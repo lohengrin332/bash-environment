@@ -85,18 +85,18 @@ autocmd BufNewFile,BufRead *.py :set cc=119
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " Sets up a command to prettify the current/selected json line
-nmap gj :.!python -m json.tool<CR>
-vmap gj :!python -m json.tool<CR>
+nmap gj :.!python3 -m json.tool<CR>
+vmap gj :!python3 -m json.tool<CR>
 
 " URL decode line/block
 " Derived from https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
-nmap gud :.!python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
-vmap gud :!python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
+nmap gud :.!python3 -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
+vmap gud :!python3 -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"<CR>
 
 " URL encode line/block
 " Derived from https://unix.stackexchange.com/questions/159253/decoding-url-encoding-percent-encoding
-nmap gue :.!python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
-vmap gue :!python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
+nmap gue :.!python3 -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
+vmap gue :!python3 -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"<CR>
 
 " Sets up a command to prettify XML
 " Entire file
