@@ -14,5 +14,6 @@ alias _rm_ssh_auth_socks="find /tmp -maxdepth 1 -type d -name ssh-\\* -user $USE
 alias ssh='ssh_func'
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    _fix_ssh_auth_sock
+    export SSH_AUTH_SOCK=$($CODE_BASE/bin/get_ssh_sock.pl)
+    ssh-add -l
 fi
