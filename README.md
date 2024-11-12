@@ -7,7 +7,9 @@
    ln -s $HOME/code/bash-env/{.bashrc_cross-system,.i3,.ideavimrc,.inputrc,.mongorc.js,.tmux.conf,.vim,.vimrc} .
    ```
 5. Follow instructions to enable "Tapping Enabled" for the touchpad device
-   in [libinput](https://wiki.archlinux.org/title/Libinput#Via_xinput_on_Xorg).
+   in [libinput](https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file).
+
+   Follow the instructions to configure via Xorg configuration file. XOrg logs are likely in `$HOME/.local/share/xorg/Xorg.0.log`.
    
-   *Note*: `xinput` is likely already installed and configured, so try that before trying to install libinput or other tools.
-7. Install desired prereqs as specified in [the i3 config file](.i3/config#L201-L217).
+   *Note*: If needed `xinput` is likely already installed and configured, so try that before trying to install libinput or other tools.
+6. Install desired prereqs as specified in [the i3 config file](.i3/config#L201-L217).
