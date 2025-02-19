@@ -22,17 +22,23 @@ class NotifySendListener extends BuildAdapter {
     }
 
     void notifySend(title, message = 'No message', icon = '/usr/share/icons/elementary-xfce/actions/48/gnome-run.png', sticky = true) {
-        def cmd = [
-            '/usr/bin/notify-send',
-            title,
-            message,
-            '-c',
-            'gradle,build_job',
-            '-i',
-            icon
-        ]
-        if (sticky) {
-            cmd << '-t' << '0'
+        def cmd = []
+        File notifySendFile = new File('/usr/bin/notify-send');
+        if (notifySendFile.exists()) {
+            cmd = [
+                notifySendFile.getAbsolutePath(),
+                title,
+                message,
+                '-c',
+                'gradle,build_job',
+                '-i',
+                icon
+            ]
+            if (sticky) {
+                cmd << '-t' << '0'
+            }
+        } else {
+            cmd << 'echo' << 'Job complete'
         }
         cmd.execute()
     }
