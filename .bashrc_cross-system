@@ -249,6 +249,7 @@ fi
 
 alias ':q'='echo "Don''t quit now!"'
 alias ':qa'=':q'
+alias 't'='printf "\e[5mEND OF WORD DELETE CHARACTER INSERT ''t''\e[25m\n"'
 
 # If this is an interactive shell, unmap ctrl+s from freezing the terminal.
 [[ $- == *i* ]] && stty -ixon
