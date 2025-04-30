@@ -152,8 +152,7 @@ REAL_GRADLE=`which gradle`
 alias gradle='_gradle_func'
 _gradle_func() {
   if [ -e ./gradlew ]; then
-    echo "./gradlew $@"
-    ./gradlew -I $CODE_BASE/gradle/jlewis.gradle $@
+    echo "WTF!? Use ``./gradlew``!!"
   else
     echo "$REAL_GRADLE $@"
     $REAL_GRADLE $@
