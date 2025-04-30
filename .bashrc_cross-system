@@ -222,7 +222,7 @@ alias gitmerge='git mergetool'
 export NYTPROF="file=$HOME/nytprof/nytprof.out:addpid=1"
 
 export PATH="$PATH:$HOME/bin"
-export GREP_COLOR='0;07'
+export GREP_COLORS='mt=0;07'
 alias grep='grep --color=auto'
 
 dircolors_exe=/usr/bin/dircolors
