@@ -2,6 +2,7 @@
     Adapted from a similar solution for Windows by https://twitter.com/mrhaki, found here:
     https://mrhaki.blogspot.com/2009/11/gradle-goodness-get-notified-about.html
     Enable by adding this configuration file to your $GRADLE_HOME/init.d directory.
+    Uses elementary-xfce-icon-theme for icons, install using `sudo apt install elementary-xfce-icon-theme`.
 */
 class NotifySendListener extends BuildAdapter {
     void buildFinished(BuildResult result) {
