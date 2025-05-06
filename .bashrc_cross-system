@@ -121,7 +121,11 @@ notify_func() {
   if [ ! -z "$1" ]; then
     MESSAGE="${MESSAGE}\n\n$1"
   fi
-  /usr/bin/notify-send -c other_job,build_job,${MACHINE_TAG} "JOB COMPLETE" "${MESSAGE}"
+  if [ -e "/usr/bin/notify-send" ]; then
+    /usr/bin/notify-send -c other_job,build_job,${MACHINE_TAG} "JOB COMPLETE" "${MESSAGE}"
+  else
+    echo -e "MISSING ``notify-send`` command, msg:\n${MESSAGE}"
+  fi
 }
 
 # alias _sf_harness='sf_harness_func'
@@ -152,7 +156,9 @@ REAL_GRADLE=`which gradle`
 alias gradle='_gradle_func'
 _gradle_func() {
   if [ -e ./gradlew ]; then
-    echo "WTF!? Use ``./gradlew``!!"
+    MESSAGE="WTF!? Use ``./gradlew``!!"
+    echo $MESSAGE
+    _notify_for_job "$MESSAGE"
     return 1
   else
     echo "$REAL_GRADLE $@"
