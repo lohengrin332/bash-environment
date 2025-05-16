@@ -213,11 +213,42 @@ elif [ -e $CODE_BASE/bin/ssh-agentrc ]; then
 else
   alias ssh='ssh -A'
 fi
-#alias ssh='ssh_func'
-#ssh_func() {
-#  export SSH_AUTH_SOCK=`$HOME/code/get_ssh_sock.pl`
-#  /usr/bin/ssh -A $*
-#}
+
+function monitor_host {
+  if [ $# -lt 1 ]; then
+    echo "Usage: $0 <HOST_TO_MONITOR> [<COUNT>]"
+    echo -e "COUNT:\n  If left blank, will monitor for 1000 attempts\n  If set to 0, will monitor infinitely"
+    return 1
+  fi
+  HOST_TO_MONITOR=$1
+  shift
+
+  if [ $# -lt 1 ]; then
+    MAX_COUNT=1000
+  else
+    MAX_COUNT=$1
+    shift
+  fi
+
+  HOST_READY=0
+  COUNT=0
+  while [ $HOST_READY -eq 0 ] && [ $COUNT -lt $MAX_COUNT ] || [ $MAX_COUNT -eq 0 ]; do
+    ((COUNT++))
+    ping -W 0.5 -qc1 $HOST_TO_MONITOR &>/dev/null && HOST_READY=1
+    echo -n .
+    sleep 0.25
+  done
+  echo
+
+  if [ $HOST_READY -eq 1 ]; then
+    echo "Ready"
+    _notify_for_job "``${HOST_TO_MONITOR}`` ready after ${COUNT} attempts."
+  else
+    echo "Not ready"
+    _notify_for_job "``${HOST_TO_MONITOR}`` not ready after ${MAX_COUNT} attempts."
+    return 1
+  fi
+}
 
 alias _eos_serial_console_4='screen /dev/ttyUSB0 115200'
 alias _eos_serial_console_10x='screen /dev/ttyUSB0 57600'
