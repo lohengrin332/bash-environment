@@ -5,6 +5,8 @@
    ```shell
    cd $HOME
    ln -s $HOME/code/bash-env/{.bashrc_cross-system,.i3,.ideavimrc,.inputrc,.mongorc.js,.tmux.conf,.vim,.vimrc} .
+   mkdir -p $HOME/.config/Cursor/User
+   ln -s $HOME/code/bash-env/cursor-keybindings.json $HOME/.config/Cursor/User/keybindings.json
    ```
 5. Follow instructions to enable "Tapping Enabled" for the touchpad device
    in [libinput](https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file).
