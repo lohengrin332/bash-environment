@@ -119,8 +119,8 @@ set $workspace2 "2"
 set $workspace3 "3 Zoom"
 set $workspace4 "4"
 set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7 IntelliJ"
+set $workspace6 "6 Code II"
+set $workspace7 "7 Code I"
 set $workspace8 "8 "
 set $workspace9 "9 "
 set $workspaceG "🎮"
@@ -290,7 +290,7 @@ for_window [class="Google-chrome" title="Google Hangouts"] move to workspace $wo
 # assign [class="jetbrains-idea"] $workspace7
 assign [class="zoom"] $workspace3
 # for_window [class="jetbrains-idea" title="Comparison Failure "] move to workspace $workspace1
-for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace $workspace1
+# for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace $workspace1
 for_window [class="Gnome-calculator"] floating enable move position center
 
 # %%hotkey: open the calculator app %%
