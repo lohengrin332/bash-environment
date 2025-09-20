@@ -292,6 +292,7 @@ assign [class="zoom"] $workspace3
 # for_window [class="jetbrains-idea" title="Comparison Failure "] move to workspace $workspace1
 # for_window [class="Google-chrome" instance=".*IntelliJIdea.*"] move to workspace $workspace1
 for_window [class="Gnome-calculator"] floating enable move position center
+for_window [class="gnome-calculator"] floating enable move position center
 
 # %%hotkey: open the calculator app %%
 bindsym $mod+c exec /usr/bin/gnome-calculator
