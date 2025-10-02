@@ -8,6 +8,11 @@
    mkdir -p $HOME/.config/Cursor/User
    ln -s $HOME/code/bash-env/cursor-keybindings.json $HOME/.config/Cursor/User/keybindings.json
    ```
+4. Download bash git completion file:
+   ```shell
+   cd $HOME
+   curl -o .git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+   ```
 5. Follow instructions to enable "Tapping Enabled" for the touchpad device
    in [libinput](https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file).
 

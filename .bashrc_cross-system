@@ -21,6 +21,7 @@ echo $CODE_BASE > ~/.code_base_path
 
 export INPUTRC="$CODE_BASE/.inputrc"
 
+# Obtain from https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
 fi
