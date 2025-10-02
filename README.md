@@ -14,4 +14,16 @@
    Follow the instructions to configure via Xorg configuration file. XOrg logs are likely in `$HOME/.local/share/xorg/Xorg.0.log`.
    
    *Note*: If needed `xinput` is likely already installed and configured, so try that before trying to install libinput or other tools.
-6. Install desired prereqs as specified in [the i3 config file](.i3/config#L201-L217).
+6. If on Ubuntu:
+   * Install desired prereqs as specified in [the i3 config file](.i3/config#L201-L217).
+7. If on mac:
+   * Install [Homebrew](https://brew.sh/) if not already installed.
+   * Install Aerospace via Homebrew
+   ```shell
+   brew install --cask nikitabobko/tap/aerospace
+    ```
+   * Link Aerospace config
+   ```shell
+   cd $HOME
+   ln -s $HOME/code/bash-env/.aerospace.toml .aerospace.toml
+   ```
