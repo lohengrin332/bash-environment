@@ -1,6 +1,9 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# Based on the [default aerospace config](https://nikitabobko.github.io/AeroSpace/config-examples/default-config.toml)
+# More [i3-like config](https://nikitabobko.github.io/AeroSpace/config-examples/i3-like-config-example.toml)
+
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = []
