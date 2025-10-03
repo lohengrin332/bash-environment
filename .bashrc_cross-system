@@ -306,3 +306,8 @@ alias _watch_ps_cpu="watch -n1 '$PS_CPU'"
 if [ -f "$HOME/.indeed-kube-profile" ]; then
   . "$HOME/.indeed-kube-profile"
 fi
+
+alias enter-container=_enter-container-func
+_enter-container-func() {
+  docker exec -it $1 /bin/bash
+}
