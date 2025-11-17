@@ -303,11 +303,19 @@ PS_CPU='uptime && echo && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n20
 alias _ps_cpu=$PS_CPU
 alias _watch_ps_cpu="watch -n1 '$PS_CPU'"
 
-if [ -f "$HOME/.indeed-kube-profile" ]; then
-  . "$HOME/.indeed-kube-profile"
-fi
+_enter-container-completion() {
+  COMPREPLY=( $(docker ps --filter "name=^${COMP_WORDS[$COMP_CWORD]}" --format '{{.Names}}') )
+}
 
 alias enter-container=_enter-container-func
 _enter-container-func() {
   docker exec -it $1 /bin/bash
 }
+complete -F _enter-container-completion enter-container
+
+alias enter-container-sh=_enter-container-sh-func
+_enter-container-sh-func() {
+  docker exec -it $1 /bin/sh
+}
+complete -F _enter-container-completion sh-enter-container
+
