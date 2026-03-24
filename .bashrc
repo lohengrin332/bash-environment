@@ -13,7 +13,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Source cross-system bashrc file
-if [ -f "$HOME/.bashrc_cross-system" ]; then
+if [[ -f "$HOME/.bashrc_cross-system" ]] && [[ $- == *i* ]]; then
   source $HOME/.bashrc_cross-system
 fi
 
