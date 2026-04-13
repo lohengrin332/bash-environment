@@ -96,7 +96,7 @@ automatically-unhide-macos-hidden-apps = true
 
     alt-f13 = 'exec-and-forget screencapture -i -c'
 
-    alt-enter = 'exec-and-forget open -n /opt/homebrew/Caskroom/iterm2/3.6.3/iTerm.app'
+    # alt-enter = 'exec-and-forget open -n /opt/homebrew/Caskroom/iterm2/3.6.3/iTerm.app'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
@@ -126,6 +126,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
     alt-b = 'resize width 550' # For sidebar windows.
+    alt-shift-b = 'resize width 800' # For larger sidebar windows.
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-0 = 'workspace 0'
@@ -200,20 +201,21 @@ automatically-unhide-macos-hidden-apps = true
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     # alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
     alt-m = 'move-workspace-to-monitor --wrap-around next'
-    alt-shift-m = [
-        'move-workspace-to-monitor --workspace 0 ".*built.*"',
-        'move-workspace-to-monitor --workspace 1 ".*built.*"',
-        'move-workspace-to-monitor --workspace 2 ".*built.*"',
-        'move-workspace-to-monitor --workspace 3 ".*built.*"',
-        'move-workspace-to-monitor --workspace 4 ".*built.*"',
-        'move-workspace-to-monitor --workspace 5 ".*built.*"',
-        'move-workspace-to-monitor --workspace 6 ".*built.*"',
-        'move-workspace-to-monitor --workspace 7 ".*built.*"',
-        'move-workspace-to-monitor --workspace 8 ".*built.*"',
-        'move-workspace-to-monitor --workspace 9 ".*built.*"',
-        'move-workspace-to-monitor --workspace G ".*built.*"',
-        'workspace 0',
-    ]
+    alt-shift-m = 'move-workspace-to-monitor --wrap-around prev'
+    # alt-shift-m = [
+    #     'move-workspace-to-monitor --workspace 0 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 1 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 2 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 3 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 4 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 5 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 6 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 7 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 8 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace 9 ".*built.*"',
+    #     'move-workspace-to-monitor --workspace G ".*built.*"',
+    #     'workspace 0',
+    # ]
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
