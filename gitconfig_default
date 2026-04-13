@@ -15,3 +15,5 @@
 	name = JD Lewis
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
