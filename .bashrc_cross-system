@@ -14,8 +14,6 @@ if [ ! -d "$CODE_BASE" ]; then
   export CODE_BASE=$HOME/code/bash-env
 fi
 
-export PATH=$PATH:${CODE_BASE}/bin
-
 # Save the code_base path so it can be accessed in the i3 configuration.
 echo $CODE_BASE > ~/.code_base_path
 
@@ -146,7 +144,7 @@ _tmux_func() {
   if [ "$1" ]; then
     SESSION_NAME=$1
   fi
-  if [ -z "$(tmux ls 2> /dev/null|grep -e "$SESSION_NAME\$")" ]; then
+  if [ -z "$(tmux ls 2> /dev/null|grep -e "$SESSION_NAME\b")" ]; then
     tmux new -s $SESSION_NAME
   else
     tmux a -t $SESSION_NAME
