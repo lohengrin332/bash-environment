@@ -59,17 +59,17 @@ workspace_auto_back_and_forth yes
 
 # %%hotkey: change focus left %%
 # $mod+{Left,Down,Up,Right}
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
+bindsym $mod+h  focus left
+bindsym $mod+j  focus down
+bindsym $mod+k  focus up
+bindsym $mod+l  focus right
 
 # %%hotkey: move focused window %%
 # $mod+Shift+{Left,Down,Up,Right}
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h  move left
+bindsym $mod+Shift+j  move down
+bindsym $mod+Shift+k  move up
+bindsym $mod+Shift+l  move right
 
 # %%hotkey: split in horizontal orientation %%
 bindsym $mod+Shift+backslash split h
@@ -102,10 +102,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # %%hotkey: switch to the internal monitor, disable external %%
-bindsym $mod+Shift+h exec ~/.screenlayout/undocked.sh
+bindsym $mod+Shift+Ctrl+h exec ~/.screenlayout/undocked.sh
 
 # %%hotkey: move the current workspace to the built-in laptop screen %%
-bindsym $mod+h move workspace to output eDP-1
+bindsym $mod+Ctrl+h move workspace to output eDP-1
 
 # %%hotkey: move the current workspace to the next screen to the right, with looping %%
 bindsym $mod+m move workspace to output right
@@ -162,24 +162,24 @@ bindsym $mod+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do 
 
 mode "resize" {
         # %%hotkey: Pressing left in resize mode will shrink the window’s width. %%
-        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
         # %%hotkey: Pressing shift+left in resize mode will shrink the window’s width a small amount. %%
-        bindsym Shift+Left resize shrink width 1 px or 1 ppt
+        bindsym Shift+h resize shrink width 1 px or 1 ppt
 
         # %%hotkey: Pressing down in resize mode will grow the window’s height. %%
-        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
         # %%hotkey: Pressing shift+down in resize mode will grow the window’s height a small amount. %%
-        bindsym Shift+Down resize grow height 1 px or 1 ppt
+        bindsym Shift+j resize grow height 1 px or 1 ppt
 
         # %%hotkey: Pressing up in resize mode will shrink the window’s height. %%
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
         # %%hotkey: Pressing shift+up in resize mode will shrink the window’s height a small amount. %%
-        bindsym Shift+Up resize shrink width 1 px or 1 ppt
+        bindsym Shift+k resize shrink width 1 px or 1 ppt
 
         # %%hotkey: Pressing right in resize mode will grow the window’s height. %%
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
         # %%hotkey: Pressing shift+right in resize mode will grow the window’s height a small amount. %%
-        bindsym Shift+Right resize grow width 1 px or 1 ppt
+        bindsym Shift+l resize grow width 1 px or 1 ppt
 
         # %%hotkey: pressing Enter or Escape in resize mode will return to normal mode %%
         bindsym Return mode "default"
@@ -245,17 +245,17 @@ bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width
 # %%hotkey: new console in PIP mode %%
 bindsym $mod+Shift+p exec gnome-terminal -e "$CODE_BASE/scripts/i3pip-console.sh" # --zoom 0.7
 mode "relocate_pip" {
-        bindsym Left move left 20px
-        bindsym Shift+Left move left 200px
+        bindsym h move left 20px
+        bindsym Shift+h move left 200px
 
-        bindsym Down move down 20px
-        bindsym Shift+Down move down 200px
+        bindsym j move down 20px
+        bindsym Shift+j move down 200px
 
         bindsym Up move up 20px
-        bindsym Shift+Up move up 200px
+        bindsym Shift+k move up 200px
 
-        bindsym Right move right 20px
-        bindsym Shift+Right move right 200px
+        bindsym l move right 20px
+        bindsym Shift+l move right 200px
 
         bindsym 0 move container to workspace $workspace0; [con_mark="pip"] focus
         bindsym 1 move container to workspace $workspace1; [con_mark="pip"] focus
@@ -276,7 +276,7 @@ mode "relocate_pip" {
 bindsym $mod+Control+p [con_mark="pip"] focus; mode "relocate_pip";
 
 # %%hotkey: lock screen with keystroke %%
-bindsym $mod+l exec $CODE_BASE/scripts/i3lock.sh
+bindsym $mod+Ctrl+q exec $CODE_BASE/scripts/i3lock.sh
 # lock screen automatically after 20 minutes
 exec --no-startup-id xautolock -time 20 -locker "$CODE_BASE/scripts/i3lock.sh"
 
