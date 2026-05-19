@@ -144,11 +144,11 @@ _tmux_func() {
   if [ "$1" ]; then
     SESSION_NAME=$1
   fi
-  if [ -z "$(tmux ls 2> /dev/null|grep -e "$SESSION_NAME\b")" ]; then
-    tmux new -s $SESSION_NAME
-  else
-    tmux a -t $SESSION_NAME
-  fi
+  # Below would be the natural way to do this, but it pattern-matches, thereby attaching to e.g. `w7-sb` when `mytmux w7` is called and no `w7` session exists.
+  # tmux has-session -t $SESSION_NAME &>/dev/null && tmux a -t $SESSION_NAME || tmux new -s $SESSION_NAME
+  tmux ls 2> /dev/null|awk '{print $1}'|grep -e "${SESSION_NAME}:" &>/dev/null \
+    && tmux a -t $SESSION_NAME \
+    || tmux new -s $SESSION_NAME
 }
 
 REAL_GRADLE=`which gradle`
